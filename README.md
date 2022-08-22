@@ -1,13 +1,4 @@
----
-title: "About"
-image: profile.jpg
-about:
-  template: jolla
-  links:
-    - icon: github
-      text: Github
-      href: https://dfe-r-community.github.io/
----
+# DfE R Community Blog
 
 Welcome to the DfE R Community Blog! This resource is updated by data
 scientists in the (UK Government) Department for Education with posts

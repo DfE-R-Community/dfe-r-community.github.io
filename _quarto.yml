@@ -26,6 +26,7 @@ format:
     css: styles.css
     toc: true
     df-print: kable
+    code-copy: true
 
 
 
