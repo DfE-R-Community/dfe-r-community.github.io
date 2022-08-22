@@ -1,0 +1,14 @@
+---
+title: "The DfE R Community Github"
+author: "Chris Brownlie"
+date: "2022-08-22"
+categories: [news]
+description: 'An introduction to the DfE R Community github and blog.'
+execute: 
+  message: false
+  warning: false
+editor_options: 
+  chunk_output_type: console
+---
+
+# Welcome

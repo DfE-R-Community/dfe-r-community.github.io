@@ -1,0 +1,28 @@
+{
+    "id": "7DE95C2D",
+    "path": "~/DfE-R-Community/dfe-r-community.github.io/posts/rsconnect-guide/index.qmd",
+    "project_path": "posts/rsconnect-guide/index.qmd",
+    "type": "quarto_markdown",
+    "hash": "1580091582",
+    "contents": "",
+    "dirty": false,
+    "created": 1661173442461.0,
+    "source_on_save": false,
+    "relative_order": 9,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "312,16",
+        "scrollLine": "301",
+        "chunk_output_type": "console",
+        "docOutlineVisible": "1"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1661174175,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1661174176015,
+    "read_only": false,
+    "read_only_alternatives": []
+}

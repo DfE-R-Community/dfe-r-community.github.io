@@ -1,0 +1,21 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "DfE R Community"
+  site-url: https://dfe-r-community.github.io
+  navbar:
+    right:
+      - text: Blog
+        href: blog.qmd
+      - icon: github
+        href: https://github.com/DfE-R-Community
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+
+
+
