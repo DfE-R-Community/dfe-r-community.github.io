@@ -12,3 +12,4 @@ editor_options:
 ---
 
 # Welcome
+This is the blog for the DfE R Community, where we will post articles about R and related topics.
