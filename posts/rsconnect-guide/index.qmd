@@ -140,7 +140,7 @@ A 2-stage pipeline is best for content that will iterate quickly, might only hav
         - If that is successful, pre-deployment conditions for Prod are checked (i.e. an approver may have to give consent for the release to continue)
         - A 'Prod' version of the content is deployed to the Production RSConnect server (this will be what customers/viewers of your content see)
 
-![Three stage pipeline](img/three_stage_pipeline.png)
+![Three stage pipeline](img/three_stage_pipeline.PNG)
 
 A 3-stage pipeline provides more flexibility and more rigorous QA opportunities than a 2-stage pipeline. The general workflow will be that every time a change is made to a non-main branch of the repository, a Dev version of the content will be deployed to the Pre-Production RSConnect server. This can be then be viewed by the developer who made the change to see if it looks as expected. The Dev version will typically be where you test out potential changes where you are unsure if they will work as expected. Once you are happy that the Dev version is working, the changes can be merged into the main branch, which will trigger a deployment to PreProd. Here, the changes can be double checked, either by the developer or ideally another person. This is the final stage for ensuring the deployment won't break anything and once this has been approved, it will deploy to the Prod version on the Production server and customers/viewers will be able to see the change.
 
@@ -166,11 +166,11 @@ downloadthis::download_file(
 ## Implementing your template
 Once you have the json file template downloaded from above, you can create a new Release pipeline for your content. In an Azure Devops Project, go to Pipelines -> Releases (on the navigation menu on the left).
 
-![Release pipelines](img/release_pipelines.png)
+![Release pipelines](img/release_pipelines.PNG)
 
 Click on 'New' and 'Import Release Pipeline'
 
-![Import release pipelines](img/import_release_pipeline.png)
+![Import release pipelines](img/import_release_pipeline.PNG)
 This should bring up a dialog box where you can select the json template you downloaded above. Click OK and this should take you to your pipeline editing page.
 
 There are a few more steps you must take before you can create your first release and these will differ depending on which of the two templates you are using.
