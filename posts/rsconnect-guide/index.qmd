@@ -128,7 +128,7 @@ In practice, the vast majority of projects will suit either a 2-stage or 3-stage
 
 ![Two stage pipeline](img/two_stage_pipeline.PNG)
 
-A 2-stage pipeline is best for content that will iterate quickly, might only have one or two people working on it and typically may not require much QA/checking of changes. The general workflow will be that every time a change is made to the main branch and the content has been deployed to PreProd, the developer will check that it looks as expected and there aren't any differences to how it appeared locally. If they are happy that the change has worked as expected, they can then approve the change and it will be deployed to Prod.
+A 2-stage pipeline is best for content that will iterate quickly, might only have one or two people working on it and typically may not require much QA/checking of changes. The general workflow will be that every time a change is made to the main branch and the content has been deployed to PreProd, the developer will check that it looks as expected and there aren't any differences to how it appeared locally. If they are happy that the change has worked as expected, they can approve the change and it will be deployed to Prod.
     
 - In a **3-stage pipeline**:
     - If a change is made to any non-main branch in the repository:
