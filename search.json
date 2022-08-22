@@ -1,17 +1,17 @@
 [
   {
-    "objectID": "blog.html",
-    "href": "blog.html",
-    "title": "dfe-r-community.github.io",
-    "section": "",
-    "text": "news\n\n\n\n\nAn introduction to the DfE R Community github and blog.\n\n\n\n\n\n\nAug 22, 2022\n\n\nChris Brownlie\n\n\n\n\n\n\nNo matching items"
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "About",
     "section": "",
     "text": "The DfE R Community blog."
+  },
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "dfe-r-community.github.io",
+    "section": "",
+    "text": "news\n\n\n\n\nAn introduction to the DfE R Community github and blog.\n\n\n\n\n\n\nAug 22, 2022\n\n\nChris Brownlie\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/rsconnect-guide/index.html#r-rstudio",
