@@ -1,1 +1,1 @@
-Sitemap: https://github.com/DfE-R-Community/dfe-r-community/sitemap.xml
+Sitemap: https://github.com/DfE-R-Community/dfe-r-community.github.io/sitemap.xml
