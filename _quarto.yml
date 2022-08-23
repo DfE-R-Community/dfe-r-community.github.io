@@ -1,5 +1,3 @@
-editor: visual
-
 # quarto.cmd install extension quarto-ext/lightbox
 filters:
   - lightbox
