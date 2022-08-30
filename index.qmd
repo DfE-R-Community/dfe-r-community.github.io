@@ -1,6 +1,6 @@
 ---
-title: "About"
-image: profile.jpg
+title: "The DfE R Community Blog"
+image: resources/logo.png
 about:
   template: jolla
   links:
@@ -10,7 +10,7 @@ about:
 ---
 
 ::: {style="text-align: left"}
-Welcome to the DfE R Community Blog! This resource is updated by data
+Welcome to the DfE R Community Blog! This is a resource updated by data
 scientists in the (UK Government) Department for Education with posts
 that we think others may also find useful/interesting. These may
 include:
