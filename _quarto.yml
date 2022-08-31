@@ -10,8 +10,10 @@ project:
 
 website:
   title: "DfE R Community"
+  favicon: "resources/favicon.png"
   site-url: https://dfe-r-community.github.io
   navbar:
+    pinned: true
     right:
       - text: Blog
         href: blog.qmd
