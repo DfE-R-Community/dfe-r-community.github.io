@@ -1,6 +1,6 @@
 ---
 title: "The DfE R Community Blog"
-image: resources/logo.png
+image: resources/logo-small.png
 about:
   template: jolla
   links:
