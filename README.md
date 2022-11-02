@@ -13,9 +13,30 @@ include:
 -   Any other thoughts about how to make data science effective for
     organisations!
 
-If you'd like to contribute, it's as easy as submitting a pull request
-at the [project
-repo](https://github.com/DfE-R-Community/dfe-r-community.github.io) on
-GitHub.
+## Steps for Contributing
+
+1.  [Fork the repository and clone your fork](
+
+    rstats-tln/fork-and-clone-repo: Tutorial how to fork repo from GitHub and then open this repo in your Rstudio session
+
+    )
+
+2.  Check out a new branch named `post/title-of-your-post-here`
+
+3.  Write your post! The easiest way to do this is to duplicate one of
+    the folders in `posts`, rename the folder to be in the form
+    `yyyy-mm-dd-post-title-here`, then edit the `index.qmd` file
+
+    -   Don't forget to update the `author` field with your name!
+
+    ```{=html}
+    <!-- -->
+    ```
+    -   To preview your changes, use the 'Render' button in RStudio to
+        serve a local version of the blog
+
+4.  Once you're happy, commit your work and create a pull request. Once
+    someone has reviewed and merged your pull request the published
+    version of the blog will be automatically updated.
 
 Happy Coding! 😃💻📈
