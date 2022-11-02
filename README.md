@@ -15,7 +15,7 @@ include:
 
 ## Steps for Contributing
 
-1.  [Fork the repository and clone your fork](rstats-tln/fork-and-clone-repo: Tutorial how to fork repo from GitHub and then open this repo in your Rstudio session)
+1.  [Fork the repository and clone your fork](https://github.com/rstats-tln/fork-and-clone-repo)
 
 2.  Check out a new branch named `post/title-of-your-post-here`
 
