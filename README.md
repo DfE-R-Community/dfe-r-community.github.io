@@ -15,11 +15,7 @@ include:
 
 ## Steps for Contributing
 
-1.  [Fork the repository and clone your fork](
-
-    rstats-tln/fork-and-clone-repo: Tutorial how to fork repo from GitHub and then open this repo in your Rstudio session
-
-    )
+1.  [Fork the repository and clone your fork](rstats-tln/fork-and-clone-repo: Tutorial how to fork repo from GitHub and then open this repo in your Rstudio session)
 
 2.  Check out a new branch named `post/title-of-your-post-here`
 
@@ -28,10 +24,7 @@ include:
     `yyyy-mm-dd-post-title-here`, then edit the `index.qmd` file
 
     -   Don't forget to update the `author` field with your name!
-
-    ```{=html}
-    <!-- -->
-    ```
+    
     -   To preview your changes, use the 'Render' button in RStudio to
         serve a local version of the blog
 
