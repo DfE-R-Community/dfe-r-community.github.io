@@ -1,0 +1,68 @@
+---
+title: "The DfE R Community Github"
+author: "Jacob Scott"
+date: "2022-10-28"
+categories: [news]
+description: 'An introduction to the DfE R Community github and blog'
+execute: 
+  message: false
+  warning: false
+---
+
+-   DfE R Community: current state, strengths and weaknesses
+
+-   Where can we focus? (Open-source development)
+
+    -   What will this look like?
+
+-   Where can this take us?
+
+# The DfE R Community
+
+## Current State
+
+The DfE R Community has a lot going for it. We have an active community
+on Teams, semi-regular community meetings (most notably Coffee &
+Coding), and a good number of friendly experts who will generally take
+the time to help others troubleshooting bugs and Shiny app deployments.
+
+If you were to sum up our R Community in a word, I think *maturing*
+would be a good fit. But, as with anything, there is room for
+improvement. As the technologies we've adopted in recent years become
+more embedded and knowledge begins to reach saturation among analysts,
+we should step back and ask, *What can we do better?*
+
+## *Where* Can We Improve?
+
+-   Version control (i.e. use of Git and GitHub / AZURE DevOps)
+
+-   Wide understanding of coding best practice
+
+-   Obvious opportunities for cross-team collaboration
+
+-   Regular events/community catchups
+
+## *How* Can We Improve?
+
+Answer: *By using GitHub!* This would seem to fulfil a lot of the
+aforementioned needs:
+
+-   GitHub is **open**: teams won't have to make endless access requests
+    in order to work together
+
+-   GitHub is **widely used**: we can easily learn lessons from other
+    organisations, e.g. by looking through issues and pull requests for
+    other projects - R packages from the Tidyverse are a good example
+
+-   GitHub is **transparent**: if we develop useful code we will get
+    feedback from its users when things break - or when we do things in
+    an obviously sub-optimal way
+
+The UK Government [Technology Code Of
+Practice](https://www.gov.uk/guidance/the-technology-code-of-practice#be-open-and-use-open-source)
+unequivocally supports this:
+
+> **3. Be open and use open source**
+>
+> Publish your code and use open source software to improve
+> transparency, flexibility and accountability.

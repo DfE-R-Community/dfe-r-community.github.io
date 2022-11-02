@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Chris Brownlie">
+<meta name="dcterms.date" content="2022-10-28">
+<meta name="description" content="A guide for how to deploy R content within the DfE.">
+
+<title>DfE R Community - Deploying to RSConnect</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../resources/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="../../site_libs/font-awesome-5.13.0/js/script.js"></script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">DfE R Community</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">Blog</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/DfE-R-Community"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Deploying to RSConnect</h1>
+                  <div>
+        <div class="description">
+          A guide for how to deploy R content within the DfE.
+        </div>
+      </div>
+                </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Chris Brownlie </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">October 28, 2022</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-is-this-document-for" id="toc-what-is-this-document-for" class="nav-link active" data-scroll-target="#what-is-this-document-for">What is this document for?</a></li>
+  <li><a href="#pre-requisites" id="toc-pre-requisites" class="nav-link" data-scroll-target="#pre-requisites">Pre-requisites</a></li>
+  <li><a href="#key-concepts" id="toc-key-concepts" class="nav-link" data-scroll-target="#key-concepts">Key concepts</a>
+  <ul class="collapse">
+  <li><a href="#r-rstudio" id="toc-r-rstudio" class="nav-link" data-scroll-target="#r-rstudio">R &amp; RStudio</a></li>
+  <li><a href="#git-azure-devops" id="toc-git-azure-devops" class="nav-link" data-scroll-target="#git-azure-devops">Git &amp; Azure Devops</a></li>
+  <li><a href="#release-pipelines" id="toc-release-pipelines" class="nav-link" data-scroll-target="#release-pipelines">Release Pipelines</a></li>
+  <li><a href="#rsconnect" id="toc-rsconnect" class="nav-link" data-scroll-target="#rsconnect">RSConnect</a>
+  <ul class="collapse">
+  <li><a href="#dfe-infrastructure" id="toc-dfe-infrastructure" class="nav-link" data-scroll-target="#dfe-infrastructure">DfE Infrastructure</a></li>
+  <li><a href="#content-types" id="toc-content-types" class="nav-link" data-scroll-target="#content-types">Content types</a></li>
+  <li><a href="#accessibility" id="toc-accessibility" class="nav-link" data-scroll-target="#accessibility">Accessibility</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#preparing-for-deployment" id="toc-preparing-for-deployment" class="nav-link" data-scroll-target="#preparing-for-deployment">Preparing for deployment</a>
+  <ul class="collapse">
+  <li><a href="#git-renv" id="toc-git-renv" class="nav-link" data-scroll-target="#git-renv">Git &amp; renv</a></li>
+  <li><a href="#azure-devops" id="toc-azure-devops" class="nav-link" data-scroll-target="#azure-devops">Azure Devops</a></li>
+  </ul></li>
+  <li><a href="#pipelines-deployment" id="toc-pipelines-deployment" class="nav-link" data-scroll-target="#pipelines-deployment">Pipelines &amp; Deployment</a>
+  <ul class="collapse">
+  <li><a href="#common-types-of-pipeline" id="toc-common-types-of-pipeline" class="nav-link" data-scroll-target="#common-types-of-pipeline">Common types of pipeline</a></li>
+  <li><a href="#implementing-your-template" id="toc-implementing-your-template" class="nav-link" data-scroll-target="#implementing-your-template">Implementing your template</a>
+  <ul class="collapse">
+  <li><a href="#two-stage-pipeline" id="toc-two-stage-pipeline" class="nav-link" data-scroll-target="#two-stage-pipeline">Two-stage pipeline</a></li>
+  <li><a href="#three-stage-pipeline" id="toc-three-stage-pipeline" class="nav-link" data-scroll-target="#three-stage-pipeline">Three-stage pipeline</a></li>
+  </ul></li>
+  <li><a href="#creating-your-first-release" id="toc-creating-your-first-release" class="nav-link" data-scroll-target="#creating-your-first-release">Creating your first release</a>
+  <ul class="collapse">
+  <li><a href="#reading-a-deployment-log-file" id="toc-reading-a-deployment-log-file" class="nav-link" data-scroll-target="#reading-a-deployment-log-file">Reading a deployment log file</a></li>
+  <li><a href="#final-steps" id="toc-final-steps" class="nav-link" data-scroll-target="#final-steps">Final steps</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#troubleshootingfaqs" id="toc-troubleshootingfaqs" class="nav-link" data-scroll-target="#troubleshootingfaqs">Troubleshooting/FAQs</a></li>
+  <li><a href="#glossary" id="toc-glossary" class="nav-link" data-scroll-target="#glossary">Glossary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
+
+
+
+
+<div class="cell">
+
+</div>
+<section id="what-is-this-document-for" class="level1">
+<h1>What is this document for?</h1>
+<p>This document is a guide for how to deploy content to the Department for Education’s internal RStudio Connect servers, including R Shiny apps, RMarkdown/Quarto documents, pkgdown sites.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This guide is aimed at R Developers within the DfE who want to share their apps or documents <strong>within the department</strong> - RSConnect is behind the DfE firewall and so cannot be used for public-facing content.</p>
+</div>
+</div>
+</section>
+<section id="pre-requisites" class="level1">
+<h1>Pre-requisites</h1>
+<p>There are some steps you must take before you can start the deployment process. All of these only need to be completed once, so if you deploy more content in future, you will not have to repeat these steps.</p>
+<ul>
+<li><p><strong>Install R &amp; Rstudio</strong>: It is assumed if you are reading this that you have already developed using R and RStudio. If not, you must install these via the Software Centre and it is recommended that you get familiar with R and create your first app/document, then return to this guide when you are ready to deploy.</p></li>
+<li><p><strong>Install Git</strong>: You must have Git installed on your device, as you will need to use Git for version controlling your project. If you do not have Git installed, you can do so from <a href="https://git-scm.com/download/win">here (if you are using Windows)</a>.</p></li>
+<li><p><strong>Ensure you have access to a DfE Azure Devops project</strong>: If your team do not already have a project you can request access to, you must raise a service desk request to create one.</p></li>
+<li><p><strong>Ensure you have RSConnect Licenses</strong>: In order to access anything on the RSConnect servers, a user must have a license - of which there are a limited amount. To ensure you have a license, you must raise a <a href="https://dfe.service-now.com/serviceportal?id=sc_cat_item&amp;sys_id=1e3c3cb9db80ab003b929334ca9619df&amp;referrer=recent_items">service desk request here</a> (‘Assign RStudio Connect License’ -&gt; ‘Both - add to VMT1PR-RSC User and VMT1PR-PP-RSC User’ -&gt; Enter your email address -&gt; Business Justification: e.g.&nbsp;‘to develop and deploy R content to the RSConnect servers’). If you are unsure whether you already have a license or not, you can check using <a href="https://rsconnect/rsc">this app</a>. If for example you already have access to the Prod server, you can modify the service desk request to only ask for a Pre-prod license.</p></li>
+</ul>
+</section>
+<section id="key-concepts" class="level1">
+<h1>Key concepts</h1>
+<section id="r-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="r-rstudio">R &amp; RStudio</h2>
+<p>It is assumed if you are reading this that you know that R is a programming language and that RStudio is an Integrated Development Environment (IDE) that can be used to develop R projects. RStudio (the IDE) is produced by a company called <em>Posit</em> (previously they were also named RStudio) and this company offers several other enterprise software. One of Posit’s enterprise offerings is a web server for deploying and hosting R-based content - this is called <strong>RStudio Connect</strong> and is what we use at the DfE to share R content.</p>
+</section>
+<section id="git-azure-devops" class="level2">
+<h2 class="anchored" data-anchor-id="git-azure-devops">Git &amp; Azure Devops</h2>
+<p>Git is a version control software that tracks changes to a project and allows you to better work collaboratively with others. Each project you work on should be contained within a <strong>Git repository</strong> (or ‘repo’ for short). Git repositories can also be linked to an online (or ‘remote’) repository, so that you (and anyone else) can save their changes to this remote repository. There are several free services for storing remote Git repositories: Github, Gitlab, Gitbucket being the most popular. As we are often working with sensitive data in the DfE and we have an existing business relationship with Microsoft, internally we use <strong>Azure Devops</strong> to host our remote Git repositories. Azure Devops has many functions, of which hosting Git repositories is just one, but for the purpose of deploying R content it is (along with release pipelines) the most important function. Repositories stored in Azure Devops are behind the DfE firewall.</p>
+</section>
+<section id="release-pipelines" class="level2">
+<h2 class="anchored" data-anchor-id="release-pipelines">Release Pipelines</h2>
+<p>Within Azure Devops, there is a framework called ‘Release pipelines’ - <strong>not to be confused with ‘Pipelines’, which are a separate thing</strong>. What these Release Pipelines can do, is take the contents of a Git repository, bundle it up and send it to a server along with some code to be run with it. In the case of deploying R content, we bundle a Git repository with some code that says ‘Deploy this to our RStudio Connect server’ and then send it to our <em>‘Build Server’</em> (which is separate to the RSConnect servers) which runs the accompanying code and deploys the content.</p>
+</section>
+<section id="rsconnect" class="level2">
+<h2 class="anchored" data-anchor-id="rsconnect">RSConnect</h2>
+<p>As mentioned above, RStudio Connect (RSConnect for short) is an enterprise offering from Posit which consists of a web server designed to host and share R content. It has many different features for simplifying management of a web server and a pretty front-end for users wanting to view any deployed R content.</p>
+<section id="dfe-infrastructure" class="level3">
+<h3 class="anchored" data-anchor-id="dfe-infrastructure">DfE Infrastructure</h3>
+<p>At the DfE, we have paid to have two RSConnect servers - one for Production (Prod) and one for Pre-Production (Pre-Prod). We also have 1250 licenses that can be assigned to colleagues in the Department. Note that licenses are required to view any restricted content and so the majority of people who want to view any deployed content will need a license.</p>
+</section>
+<section id="content-types" class="level3">
+<h3 class="anchored" data-anchor-id="content-types">Content types</h3>
+<p>RSConnect supports many different types of R-based content. It is important to note that the way in which we deploy content at the DfE is non-standard. If you read the <a href="https://docs.rstudio.com/connect/user/">RStudio Connect user guide</a>, any references to deploying content straight from RStudio IDE or different methods for publishing can be ignored as they do not apply to our scenario.</p>
+<p>The deployment process we use at the DfE will fail if it cannot detect the type of content being deployed. Below is a table explaining what types of content can be deployed and the file(s) that must be present in order for that to be detected.</p>
+<table class="table">
+<caption>Possible RStudio Connect content types</caption>
+<colgroup>
+<col style="width: 55%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Content type</th>
+<th style="text-align: left;">Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Shiny app</td>
+<td style="text-align: left;">Either a file named ‘app.R’, OR two files named ‘ui.R’ and ‘server.R’</td>
+</tr>
+<tr class="even">
+<td>RMarkdown</td>
+<td style="text-align: left;">A file named ‘index.Rmd’</td>
+</tr>
+<tr class="odd">
+<td>bookdown</td>
+<td style="text-align: left;">A file named ‘bookdown.yml’</td>
+</tr>
+<tr class="even">
+<td>pkgdown</td>
+<td style="text-align: left;">A folder named ‘docs’</td>
+</tr>
+<tr class="odd">
+<td>Static HTML page</td>
+<td style="text-align: left;">A file named ‘index.html’ in a folder named ‘docs’</td>
+</tr>
+<tr class="even">
+<td>plumber API</td>
+<td style="text-align: left;">A file named ’plumber.R</td>
+</tr>
+<tr class="odd">
+<td>Quarto</td>
+<td style="text-align: left;">Not yet available</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="accessibility" class="level3">
+<h3 class="anchored" data-anchor-id="accessibility">Accessibility</h3>
+<p>The internal RSConnect servers are behind the DfE firewall and can be accessed by anyone from a DfE device. If you do not have a license then you will only be able to view content which has been open to be viewed by everyone in the department.</p>
+<p>All RSConnect apps on the Production server can be accessed with any web browser (although Chrome or Firefox are recommended), and can all be accessed via a URL that starts with https://rsconnect/rsc/… - the end of the URL will be different for each piece of deployed content.</p>
+</section>
+</section>
+</section>
+<section id="preparing-for-deployment" class="level1">
+<h1>Preparing for deployment</h1>
+<p>Before you start the deployment process for a particular project, there are some steps you must take first to ensure that your project meets the requirements for deployed content within the Department.</p>
+<section id="git-renv" class="level2">
+<h2 class="anchored" data-anchor-id="git-renv">Git &amp; renv</h2>
+<ul>
+<li><p><strong>Your project must be version controlled with Git:</strong> this can be done in several ways, such as with the <code>git init</code> command in Git Bash or the command prompt, or in RStudio itself. If you are unfamiliar with Git, there are several <a href="https://www.atlassian.com/git/tutorials/">tutorials online that can help</a> - it is crucial that, at the very least, you are comfortable committing and pushing changes to a remote repository. You should ensure that you have a repository set up and you have committed your work so far.</p></li>
+<li><p><strong>Your project must use <code>renv</code>:</strong> <a href="https://rstudio.github.io/renv/index.html"><code>renv</code></a> is an R package that allows you to manage the packages used in your project. It keeps track of which packages you have installed and what versions you are using. This is useful when collaborating with others as it allows you to quickly and easily make sure you are using the same versions of the same packages as your collaborators - reducing the risk of differences across devices. Package management with renv is crucial for deploying content to RStudio Connect, however, because it is used by RSConnect to install all the packages needed for your content to work.</p>
+<ul>
+<li>You can easily set up renv for an existing project using <code>renv::init()</code> and making sure you run <code>renv::snapshot()</code> (and commit any changes to Git) <strong>before every deployment</strong>.</li>
+</ul></li>
+</ul>
+</section>
+<section id="azure-devops" class="level2">
+<h2 class="anchored" data-anchor-id="azure-devops">Azure Devops</h2>
+<ul>
+<li><strong>Your project must have a remote repository on Azure Devops:</strong> as mentioned previously, you should have access to a an Azure Devops project. If you do - and you have set up Git correctly - you should be able to add this repository as a remote for your project and push any changes you have committed so far.</li>
+</ul>
+</section>
+</section>
+<section id="pipelines-deployment" class="level1 page-columns page-full">
+<h1>Pipelines &amp; Deployment</h1>
+<p>Once you have your repository hosted on Azure Devops, you are ready to set up your Release Pipeline. This is what will actually perform the process of deploying your app to RSConnect.</p>
+<section id="common-types-of-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="common-types-of-pipeline">Common types of pipeline</h2>
+<p>To help with the process of setting up a pipeline, there are two templates provided below which you can download and use to set up your pipeline, following the instructions below. But first you need to understand a bit more about release pipelines and the difference between the two templates below.</p>
+<p>Release pipelines consist of an <strong>artifact</strong> and one or more <strong>stages</strong>.</p>
+<ul>
+<li><p>The <strong>artifact</strong> is the source for any code that is to be deployed - this is your Azure Devops repository that you’ve set up to host your project repository.</p></li>
+<li><p>Each <strong>stage</strong>, runs some code and optionally has some environment variables assigned to them which determine exactly how that code is run. In our case, we will use environment variables to determine whether we are deploying to the Production server or the Pre-Production server.</p></li>
+<li><p>Each stage can also optionally have <strong>pre-deployment conditions</strong>, which must be met before a stage is begun. In our case, we can use this to set an ‘approver’ for deployment to a stage - e.g.&nbsp;if multiple people are working on a project, a lead developer may have to give approval for any deployment to Production.</p></li>
+</ul>
+<p>When pipelines are set up, <strong>releases</strong> can then be created. Each release will travel from the artifact, along the pipeline and through each stage (as long as it passes the pre-deployment checks). An important point is that pipelines can be set up to automatically create releases whenever a change is pushed to the artifact (the Azure Devops repository). Combining this with the pre-deployment checks for each stage gives a multitude of options for how pipelines can work.</p>
+<p>In practice, the vast majority of projects will suit either a 2-stage or 3-stage pipeline.</p>
+<ul>
+<li>In a <strong>2-stage pipeline</strong>:
+<ul>
+<li>If a change is made to any non-main branch in the repository:
+<ul>
+<li>No release is created</li>
+</ul></li>
+<li>If a change is made to the main branch in the repository:
+<ul>
+<li>A new release is created</li>
+<li>A ‘PreProd’ version of the content is deployed to the Pre-Production RSConnect server.</li>
+<li>If that is successful, pre-deployment conditions for Prod are checked (i.e.&nbsp;an approver may have to give consent for the release to continue)</li>
+<li>A ‘Prod’ version of the content is deployed to the Production RSConnect server (this will be what customers/viewers of your content see)</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/two_stage_pipeline.PNG" class="lightbox" title="Two stage pipeline" data-gallery="quarto-lightbox-gallery-1"><img src="img/two_stage_pipeline.PNG" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Two stage pipeline</figcaption><p></p>
+</figure>
+</div>
+<p>A 2-stage pipeline is best for content that will iterate quickly, might only have one or two people working on it and typically may not require much QA/checking of changes. The general workflow will be that every time a change is made to the main branch and the content has been deployed to PreProd, the developer will check that it looks as expected and there aren’t any differences to how it appeared locally. If they are happy that the change has worked as expected, they can approve the change and it will be deployed to Prod.</p>
+<ul>
+<li>In a <strong>3-stage pipeline</strong>:
+<ul>
+<li>If a change is made to any non-main branch in the repository:
+<ul>
+<li>A new release is created</li>
+<li>A ‘Dev’ version of the content is deployed to the Pre-Production RSConnect server.</li>
+</ul></li>
+<li>If a change is made to the main branch in the repository:
+<ul>
+<li>A new release is created</li>
+<li>A ‘PreProd’ version of the content is deployed to the Pre-Production RSConnect server.</li>
+<li>If that is successful, pre-deployment conditions for Prod are checked (i.e.&nbsp;an approver may have to give consent for the release to continue)</li>
+<li>A ‘Prod’ version of the content is deployed to the Production RSConnect server (this will be what customers/viewers of your content see)</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/three_stage_pipeline.PNG" class="lightbox" title="Three stage pipeline" data-gallery="quarto-lightbox-gallery-2"><img src="img/three_stage_pipeline.PNG" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Three stage pipeline</figcaption><p></p>
+</figure>
+</div>
+<p>A 3-stage pipeline provides more flexibility and more rigorous QA opportunities than a 2-stage pipeline. The general workflow will be that every time a change is made to a non-main branch of the repository, a Dev version of the content will be deployed to the Pre-Production RSConnect server. This can be then be viewed by the developer who made the change to see if it looks as expected. The Dev version will typically be where you test out potential changes where you are unsure if they will work as expected. Once you are happy that the Dev version is working, the changes can be merged into the main branch, which will trigger a deployment to PreProd. Here, the changes can be double checked, either by the developer or ideally another person. This is the final stage for ensuring the deployment won’t break anything and once this has been approved, it will deploy to the Prod version on the Production server and customers/viewers will be able to see the change.</p>
+<p>If you are unsure which of the two pipelines is most appropriate for you, I’d recommend you default to the 3-stage pipeline as it allows more room for error and doesn’t increase the complexity of the pipeline too significantly.</p>
+<p>Use the buttons below to download the relevant template:</p>
+<div class="cell">
+<div class="cell-output-display">
+<a onclick="fetch('data:application/json;base64,eyJzb3VyY2UiOjIsInJldmlzaW9uIjoyLCJkZXNjcmlwdGlvbiI6bnVsbCwiY3JlYXRlZEJ5Ijp7ImRpc3BsYXlOYW1lIjoiQ2hyaXMgQnJvd25saWUiLCJ1cmwiOiJodHRwczovL3Nwc3Byb2R3ZXUxLnZzc3BzLnZpc3VhbHN0dWRpby5jb20vQTM0ZTk2YTc3LTYwNGItNGJkNS05OWJjLThjNWI4OTdjMGQ1Ni9fYXBpcy9JZGVudGl0aWVzLzFlMzY0MTlhLTQ1NDMtNmE0NS05ZGY5LTdkMGYwMGQyNmM3NyIsIl9saW5rcyI6eyJhdmF0YXIiOnsiaHJlZiI6Imh0dHBzOi8vZGZlLWdvdi11ay52aXN1YWxzdHVkaW8uY29tL19hcGlzL0dyYXBoUHJvZmlsZS9NZW1iZXJBdmF0YXJzL2FhZC5NV1V6TmpReE9XRXRORFUwTXkwM1lUUTFMVGxrWmprdE4yUXdaakF3WkRJMll6YzMifX0sImlkIjoiMWUzNjQxOWEtNDU0My02YTQ1LTlkZjktN2QwZjAwZDI2Yzc3IiwidW5pcXVlTmFtZSI6IkNocmlzdG9waGVyLkJST1dOTElFQEVEVUNBVElPTi5HT1YuVUsiLCJpbWFnZVVybCI6Imh0dHBzOi8vZGZlLWdvdi11ay52aXN1YWxzdHVkaW8uY29tL19hcGlzL0dyYXBoUHJvZmlsZS9NZW1iZXJBdmF0YXJzL2FhZC5NV1V6TmpReE9XRXRORFUwTXkwM1lUUTFMVGxrWmprdE4yUXdaakF3WkRJMll6YzMiLCJkZXNjcmlwdG9yIjoiYWFkLk1XVXpOalF4T1dFdE5EVTBNeTAzWVRRMUxUbGtaamt0TjJRd1pqQXdaREkyWXpjMyJ9LCJjcmVhdGVkT24iOiIyMDIyLTA3LTEyVDE1OjQ1OjE2LjQzMFoiLCJtb2RpZmllZEJ5Ijp7ImRpc3BsYXlOYW1lIjoiQ2hyaXMgQnJvd25saWUiLCJ1cmwiOiJodHRwczovL3Nwc3Byb2R3ZXUxLnZzc3BzLnZpc3VhbHN0dWRpby5jb20vQTM0ZTk2YTc3LTYwNGItNGJkNS05OWJjLThjNWI4OTdjMGQ1Ni9fYXBpcy9JZGVudGl0aWVzLzFlMzY0MTlhLTQ1NDMtNmE0NS05ZGY5LTdkMGYwMGQyNmM3NyIsIl9saW5rcyI6eyJhdmF0YXIiOnsiaHJlZiI6Imh0dHBzOi8vZGZlLWdvdi11ay52aXN1YWxzdHVkaW8uY29tL19hcGlzL0dyYXBoUHJvZmlsZS9NZW1iZXJBdmF0YXJzL2FhZC5NV1V6TmpReE9XRXRORFUwTXkwM1lUUTFMVGxrWmprdE4yUXdaakF3WkRJMll6YzMifX0sImlkIjoiMWUzNjQxOWEtNDU0My02YTQ1LTlkZjktN2QwZjAwZDI2Yzc3IiwidW5pcXVlTmFtZSI6IkNocmlzdG9waGVyLkJST1dOTElFQEVEVUNBVElPTi5HT1YuVUsiLCJpbWFnZVVybCI6Imh0dHBzOi8vZGZlLWdvdi11ay52aXN1YWxzdHVkaW8uY29tL19hcGlzL0dyYXBoUHJvZmlsZS9NZW1iZXJBdmF0YXJzL2FhZC5NV1V6TmpReE9XRXRORFUwTXkwM1lUUTFMVGxrWmprdE4yUXdaakF3WkRJMll6YzMiLCJkZXNjcmlwdG9yIjoiYWFkLk1XVXpOalF4T1dFdE5EVTBNeTAzWVRRMUxUbGtaamt0TjJRd1pqQXdaREkyWXpjMyJ9LCJtb2RpZmllZE9uIjoiMjAyMi0wNy0xMlQxNTo0OTozNy43NzdaIiwiaXNEZWxldGVkIjpmYWxzZSwidmFyaWFibGVzIjp7fSwidmFyaWFibGVHcm91cHMiOltdLCJlbnZpcm9ubWVudHMiOlt7ImlkIjozMjcsIm5hbWUiOiJQcmUtUHJvZCIsInJhbmsiOjEsIm93bmVyIjp7ImRpc3BsYXlOYW1lIjoiQ2hyaXMgQnJvd25saWUiLCJ1cmwiOiJodHRwczovL3Nwc3Byb2R3ZXUxLnZzc3BzLnZpc3VhbHN0dWRpby5jb20vQTM0ZTk2YTc3LTYwNGItNGJkNS05OWJjLThjNWI4OTdjMGQ1Ni9fYXBpcy9JZGVudGl0aWVzLzFlMzY0MTlhLTQ1NDMtNmE0NS05ZGY5LTdkMGYwMGQyNmM3NyIsIl9saW5rcyI6eyJhdmF0YXIiOnsiaHJlZiI6Imh0dHBzOi8vZGZlLWdvdi11ay52aXN1YWxzdHVkaW8uY29tL19hcGlzL0dyYXBoUHJvZmlsZS9NZW1iZXJBdmF0YXJzL2FhZC5NV1V6TmpReE9XRXRORFUwTXkwM1lUUTFMVGxrWmprdE4yUXdaakF3WkRJMll6YzMifX0sImlkIjoiMWUzNjQxOWEtNDU0My02YTQ1LTlkZjktN2QwZjAwZDI2Yzc3IiwidW5pcXVlTmFtZSI6IkNocmlzdG9waGVyLkJST1dOTElFQEVEVUNBVElPTi5HT1YuVUsiLCJpbWFnZVVybCI6Imh0dHBzOi8vZGZlLWdvdi11ay52aXN1YWxzdHVkaW8uY29tL19hcGlzL0dyYXBoUHJvZmlsZS9NZW1iZXJBdmF0YXJzL2FhZC5NV1V6TmpReE9XRXRORFUwTXkwM1lUUTFMVGxrWmprdE4yUXdaakF3WkRJMll6YzMiLCJkZXNjcmlwdG9yIjoiYWFkLk1XVXpOalF4T1dFdE5EVTBNeTAzWVRRMUxUbGtaamt0TjJRd1pqQXdaREkyWXpjMyJ9LCJ2YXJpYWJsZXMiOnsiQVBQX0lEIjp7InZhbHVlIjoiIn0sIkFQUF9OQU1FIjp7InZhbHVlIjoiIn19LCJ2YXJpYWJsZUdyb3VwcyI6W10sInByZURlcGxveUFwcHJvdmFscyI6eyJhcHByb3ZhbHMiOlt7InJhbmsiOjEsImlzQXV0b21hdGVkIjp0cnVlLCJpc05vdGlmaWNhdGlvbk9uIjpmYWxzZSwiaWQiOjExOTJ9XSwiYXBwcm92YWxPcHRpb25zIjp7InJlcXVpcmVkQXBwcm92ZXJDb3VudCI6bnVsbCwicmVsZWFzZUNyZWF0b3JDYW5CZUFwcHJvdmVyIjpmYWxzZSwiYXV0b1RyaWdnZXJlZEFuZFByZXZpb3VzRW52aXJvbm1lbnRBcHByb3ZlZENhbkJlU2tpcHBlZCI6ZmFsc2UsImVuZm9yY2VJZGVudGl0eVJldmFsaWRhdGlvbiI6ZmFsc2UsInRpbWVvdXRJbk1pbnV0ZXMiOjAsImV4ZWN1dGlvbk9yZGVyIjoxfX0sImRlcGxveVN0ZXAiOnsiaWQiOjExOTV9LCJwb3N0RGVwbG95QXBwcm92YWxzIjp7ImFwcHJvdmFscyI6W3sicmFuayI6MSwiaXNBdXRvbWF0ZWQiOnRydWUsImlzTm90aWZpY2F0aW9uT24iOmZhbHNlLCJpZCI6MTE5Nn1dLCJhcHByb3ZhbE9wdGlvbnMiOnsicmVxdWlyZWRBcHByb3ZlckNvdW50IjpudWxsLCJyZWxlYXNlQ3JlYXRvckNhbkJlQXBwcm92ZXIiOmZhbHNlLCJhdXRvVHJpZ2dlcmVkQW5kUHJldmlvdXNFbnZpcm9ubWVudEFwcHJvdmVkQ2FuQmVTa2lwcGVkIjpmYWxzZSwiZW5mb3JjZUlkZW50aXR5UmV2YWxpZGF0aW9uIjpmYWxzZSwidGltZW91dEluTWludXRlcyI6MCwiZXhlY3V0aW9uT3JkZXIiOjJ9fSwiZGVwbG95UGhhc2VzIjpbeyJkZXBsb3ltZW50SW5wdXQiOnsicGFyYWxsZWxFeGVjdXRpb24iOnsicGFyYWxsZWxFeGVjdXRpb25UeXBlIjowfSwiYWdlbnRTcGVjaWZpY2F0aW9uIjpudWxsLCJza2lwQXJ0aWZhY3RzRG93bmxvYWQiOmZhbHNlLCJhcnRpZmFjdHNEb3dubG9hZElucHV0Ijp7ImRvd25sb2FkSW5wdXRzIjpbXX0sInF1ZXVlSWQiOjI4MiwiZGVtYW5kcyI6W10sImVuYWJsZUFjY2Vzc1Rva2VuIjpmYWxzZSwidGltZW91dEluTWludXRlcyI6MCwiam9iQ2FuY2VsVGltZW91dEluTWludXRlcyI6MSwiY29uZGl0aW9uIjoic3VjY2VlZGVkKCkiLCJvdmVycmlkZUlucHV0cyI6e319LCJyYW5rIjoxLCJwaGFzZVR5cGUiOjEsIm5hbWUiOiJEZXBsb3kgdG8gUlNDb25uZWN0IiwicmVmTmFtZSI6bnVsbCwid29ya2Zsb3dUYXNrcyI6W3siZW52aXJvbm1lbnQiOnt9LCJ0YXNrSWQiOiJlMjEzZmYwZi01ZDVjLTQ3OTEtODAyZC01MmVhM2U3YmUxZjEiLCJ2ZXJzaW9uIjoiMS4qIiwibmFtZSI6IlBvd2VyU2hlbGwgU2NyaXB0IiwicmVmTmFtZSI6IiIsImVuYWJsZWQiOnRydWUsImFsd2F5c1J1biI6ZmFsc2UsImNvbnRpbnVlT25FcnJvciI6ZmFsc2UsInRpbWVvdXRJbk1pbnV0ZXMiOjAsInJldHJ5Q291bnRPblRhc2tGYWlsdXJlIjowLCJkZWZpbml0aW9uVHlwZSI6InRhc2siLCJvdmVycmlkZUlucHV0cyI6e30sImNvbmRpdGlvbiI6InN1Y2NlZWRlZCgpIiwiaW5wdXRzIjp7InNjcmlwdFR5cGUiOiJpbmxpbmVTY3JpcHQiLCJzY3JpcHROYW1lIjoiJChEZXBsb3kuUG93ZXJzaGVsbC5TY3JpcHQpIiwiYXJndW1lbnRzIjoiIiwid29ya2luZ0ZvbGRlciI6IiIsImlubGluZVNjcmlwdCI6IlJzY3JpcHQgLWUgXCJzZXR3ZChsaXN0LmRpcnMocmVjdXJzaXZlID0gRkFMU0UpWzFdKTsgc291cmNlKFN5cy5nZXRlbnYoJ0RFUExPWV9SX1NDUklQVCcpKTtcIiIsImZhaWxPblN0YW5kYXJkRXJyb3IiOiJmYWxzZSJ9fV19XSwiZW52aXJvbm1lbnRPcHRpb25zIjp7ImVtYWlsTm90aWZpY2F0aW9uVHlwZSI6Ik9ubHlPbkZhaWx1cmUiLCJlbWFpbFJlY2lwaWVudHMiOiJyZWxlYXNlLmVudmlyb25tZW50Lm93bmVyO3JlbGVhc2UuY3JlYXRvciIsInNraXBBcnRpZmFjdHNEb3dubG9hZCI6ZmFsc2UsInRpbWVvdXRJbk1pbnV0ZXMiOjAsImVuYWJsZUFjY2Vzc1Rva2VuIjpmYWxzZSwicHVibGlzaERlcGxveW1lbnRTdGF0dXMiOnRydWUsImJhZGdlRW5hYmxlZCI6ZmFsc2UsImF1dG9MaW5rV29ya0l0ZW1zIjpmYWxzZSwicHVsbFJlcXVlc3REZXBsb3ltZW50RW5hYmxlZCI6ZmFsc2V9LCJkZW1hbmRzIjpbXSwiY29uZGl0aW9ucyI6W3sibmFtZSI6IlJlbGVhc2VTdGFydGVkIiwiY29uZGl0aW9uVHlwZSI6MSwidmFsdWUiOiIifV0sImV4ZWN1dGlvblBvbGljeSI6eyJjb25jdXJyZW5jeUNvdW50IjoxLCJxdWV1ZURlcHRoQ291bnQiOjB9LCJzY2hlZHVsZXMiOltdLCJjdXJyZW50UmVsZWFzZSI6eyJpZCI6MCwidXJsIjoiaHR0cHM6Ly9kZmUtZ292LXVrLnZzcm0udmlzdWFsc3R1ZGlvLmNvbS82NzRhMWY0Mi0yZWZiLTQzM2QtODc4Ni03NmUzNmYwMGFhYjEvX2FwaXMvUmVsZWFzZS9yZWxlYXNlcy8wIiwiX2xpbmtzIjp7fX0sInJldGVudGlvblBvbGljeSI6eyJkYXlzVG9LZWVwIjozMCwicmVsZWFzZXNUb0tlZXAiOjMsInJldGFpbkJ1aWxkIjp0cnVlfSwicHJvY2Vzc1BhcmFtZXRlcnMiOnt9LCJwcm9wZXJ0aWVzIjp7IkxpbmtCb2FyZHNXb3JrSXRlbXMiOnsiJHR5cGUiOiJTeXN0ZW0uU3RyaW5nIiwiJHZhbHVlIjoiRmFsc2UifSwiQm9hcmRzRW52aXJvbm1lbnRUeXBlIjp7IiR0eXBlIjoiU3lzdGVtLlN0cmluZyIsIiR2YWx1ZSI6InVubWFwcGVkIn19LCJwcmVEZXBsb3ltZW50R2F0ZXMiOnsiaWQiOjAsImdhdGVzT3B0aW9ucyI6bnVsbCwiZ2F0ZXMiOltdfSwicG9zdERlcGxveW1lbnRHYXRlcyI6eyJpZCI6MCwiZ2F0ZXNPcHRpb25zIjpudWxsLCJnYXRlcyI6W119LCJlbnZpcm9ubWVudFRyaWdnZXJzIjpbXSwiYmFkZ2VVcmwiOiJodHRwczovL2RmZS1nb3YtdWsudnNybS52aXN1YWxzdHVkaW8uY29tL19hcGlzL3B1YmxpYy9SZWxlYXNlL2JhZGdlLzY3NGExZjQyLTJlZmItNDMzZC04Nzg2LTc2ZTM2ZjAwYWFiMS8xMTUvMzI3In0seyJpZCI6MzI4LCJuYW1lIjoiUHJvZCIsInJhbmsiOjIsIm93bmVyIjp7ImRpc3BsYXlOYW1lIjoiQ2hyaXMgQnJvd25saWUiLCJ1cmwiOiJodHRwczovL3Nwc3Byb2R3ZXUxLnZzc3BzLnZpc3VhbHN0dWRpby5jb20vQTM0ZTk2YTc3LTYwNGItNGJkNS05OWJjLThjNWI4OTdjMGQ1Ni9fYXBpcy9JZGVudGl0aWVzLzFlMzY0MTlhLTQ1NDMtNmE0NS05ZGY5LTdkMGYwMGQyNmM3NyIsIl9saW5rcyI6eyJhdmF0YXIiOnsiaHJlZiI6Imh0dHBzOi8vZGZlLWdvdi11ay52aXN1YWxzdHVkaW8uY29tL19hcGlzL0dyYXBoUHJvZmlsZS9NZW1iZXJBdmF0YXJzL2FhZC5NV1V6TmpReE9XRXRORFUwTXkwM1lUUTFMVGxrWmprdE4yUXdaakF3WkRJMll6YzMifX0sImlkIjoiMWUzNjQxOWEtNDU0My02YTQ1LTlkZjktN2QwZjAwZDI2Yzc3IiwidW5pcXVlTmFtZSI6IkNocmlzdG9waGVyLkJST1dOTElFQEVEVUNBVElPTi5HT1YuVUsiLCJpbWFnZVVybCI6Imh0dHBzOi8vZGZlLWdvdi11ay52aXN1YWxzdHVkaW8uY29tL19hcGlzL0dyYXBoUHJvZmlsZS9NZW1iZXJBdmF0YXJzL2FhZC5NV1V6TmpReE9XRXRORFUwTXkwM1lUUTFMVGxrWmprdE4yUXdaakF3WkRJMll6YzMiLCJkZXNjcmlwdG9yIjoiYWFkLk1XVXpOalF4T1dFdE5EVTBNeTAzWVRRMUxUbGtaamt0TjJRd1pqQXdaREkyWXpjMyJ9LCJ2YXJpYWJsZXMiOnsiQVBQX0lEIjp7InZhbHVlIjoiIn0sIkFQUF9OQU1FIjp7InZhbHVlIjoiIn19LCJ2YXJpYWJsZUdyb3VwcyI6W10sInByZURlcGxveUFwcHJvdmFscyI6eyJhcHByb3ZhbHMiOlt7InJhbmsiOjEsImlzQXV0b21hdGVkIjpmYWxzZSwiaXNOb3RpZmljYXRpb25PbiI6ZmFsc2UsImFwcHJvdmVyIjp7ImRpc3BsYXlOYW1lIjoiQ2hyaXMgQnJvd25saWUiLCJ1cmwiOiJodHRwczovL3Nwc3Byb2R3ZXUxLnZzc3BzLnZpc3VhbHN0dWRpby5jb20vQTM0ZTk2YTc3LTYwNGItNGJkNS05OWJjLThjNWI4OTdjMGQ1Ni9fYXBpcy9JZGVudGl0aWVzLzFlMzY0MTlhLTQ1NDMtNmE0NS05ZGY5LTdkMGYwMGQyNmM3NyIsIl9saW5rcyI6eyJhdmF0YXIiOnsiaHJlZiI6Imh0dHBzOi8vZGZlLWdvdi11ay52aXN1YWxzdHVkaW8uY29tL19hcGlzL0dyYXBoUHJvZmlsZS9NZW1iZXJBdmF0YXJzL2FhZC5NV1V6TmpReE9XRXRORFUwTXkwM1lUUTFMVGxrWmprdE4yUXdaakF3WkRJMll6YzMifX0sImlkIjoiMWUzNjQxOWEtNDU0My02YTQ1LTlkZjktN2QwZjAwZDI2Yzc3IiwidW5pcXVlTmFtZSI6IkNocmlzdG9waGVyLkJST1dOTElFQEVEVUNBVElPTi5HT1YuVUsiLCJpbWFnZVVybCI6Imh0dHBzOi8vZGZlLWdvdi11ay52aXN1YWxzdHVkaW8uY29tL19hcGlzL0dyYXBoUHJvZmlsZS9NZW1iZXJBdmF0YXJzL2FhZC5NV1V6TmpReE9XRXRORFUwTXkwM1lUUTFMVGxrWmprdE4yUXdaakF3WkRJMll6YzMiLCJkZXNjcmlwdG9yIjoiYWFkLk1XVXpOalF4T1dFdE5EVTBNeTAzWVRRMUxUbGtaamt0TjJRd1pqQXdaREkyWXpjMyJ9LCJpZCI6MTE5M31dLCJhcHByb3ZhbE9wdGlvbnMiOnsicmVxdWlyZWRBcHByb3ZlckNvdW50IjpudWxsLCJyZWxlYXNlQ3JlYXRvckNhbkJlQXBwcm92ZXIiOnRydWUsImF1dG9UcmlnZ2VyZWRBbmRQcmV2aW91c0Vudmlyb25tZW50QXBwcm92ZWRDYW5CZVNraXBwZWQiOmZhbHNlLCJlbmZvcmNlSWRlbnRpdHlSZXZhbGlkYXRpb24iOmZhbHNlLCJ0aW1lb3V0SW5NaW51dGVzIjowLCJleGVjdXRpb25PcmRlciI6MX19LCJkZXBsb3lTdGVwIjp7ImlkIjoxMTk0fSwicG9zdERlcGxveUFwcHJvdmFscyI6eyJhcHByb3ZhbHMiOlt7InJhbmsiOjEsImlzQXV0b21hdGVkIjp0cnVlLCJpc05vdGlmaWNhdGlvbk9uIjpmYWxzZSwiaWQiOjExOTd9XSwiYXBwcm92YWxPcHRpb25zIjp7InJlcXVpcmVkQXBwcm92ZXJDb3VudCI6bnVsbCwicmVsZWFzZUNyZWF0b3JDYW5CZUFwcHJvdmVyIjpmYWxzZSwiYXV0b1RyaWdnZXJlZEFuZFByZXZpb3VzRW52aXJvbm1lbnRBcHByb3ZlZENhbkJlU2tpcHBlZCI6ZmFsc2UsImVuZm9yY2VJZGVudGl0eVJldmFsaWRhdGlvbiI6ZmFsc2UsInRpbWVvdXRJbk1pbnV0ZXMiOjAsImV4ZWN1dGlvbk9yZGVyIjoyfX0sImRlcGxveVBoYXNlcyI6W3siZGVwbG95bWVudElucHV0Ijp7InBhcmFsbGVsRXhlY3V0aW9uIjp7InBhcmFsbGVsRXhlY3V0aW9uVHlwZSI6MH0sImFnZW50U3BlY2lmaWNhdGlvbiI6bnVsbCwic2tpcEFydGlmYWN0c0Rvd25sb2FkIjpmYWxzZSwiYXJ0aWZhY3RzRG93bmxvYWRJbnB1dCI6eyJkb3dubG9hZElucHV0cyI6W119LCJxdWV1ZUlkIjoyODIsImRlbWFuZHMiOltdLCJlbmFibGVBY2Nlc3NUb2tlbiI6ZmFsc2UsInRpbWVvdXRJbk1pbnV0ZXMiOjAsImpvYkNhbmNlbFRpbWVvdXRJbk1pbnV0ZXMiOjEsImNvbmRpdGlvbiI6InN1Y2NlZWRlZCgpIiwib3ZlcnJpZGVJbnB1dHMiOnt9fSwicmFuayI6MSwicGhhc2VUeXBlIjoxLCJuYW1lIjoiRGVwbG95IHRvIFJTQ29ubmVjdCIsInJlZk5hbWUiOm51bGwsIndvcmtmbG93VGFza3MiOlt7ImVudmlyb25tZW50Ijp7fSwidGFza0lkIjoiZTIxM2ZmMGYtNWQ1Yy00NzkxLTgwMmQtNTJlYTNlN2JlMWYxIiwidmVyc2lvbiI6IjEuKiIsIm5hbWUiOiJQb3dlclNoZWxsIFNjcmlwdCIsInJlZk5hbWUiOiIiLCJlbmFibGVkIjp0cnVlLCJhbHdheXNSdW4iOmZhbHNlLCJjb250aW51ZU9uRXJyb3IiOmZhbHNlLCJ0aW1lb3V0SW5NaW51dGVzIjowLCJyZXRyeUNvdW50T25UYXNrRmFpbHVyZSI6MCwiZGVmaW5pdGlvblR5cGUiOiJ0YXNrIiwib3ZlcnJpZGVJbnB1dHMiOnt9LCJjb25kaXRpb24iOiJzdWNjZWVkZWQoKSIsImlucHV0cyI6eyJzY3JpcHRUeXBlIjoiaW5saW5lU2NyaXB0Iiwic2NyaXB0TmFtZSI6IiQoRGVwbG95LlBvd2Vyc2hlbGwuU2NyaXB0KSIsImFyZ3VtZW50cyI6IiIsIndvcmtpbmdGb2xkZXIiOiIiLCJpbmxpbmVTY3JpcHQiOiJSc2NyaXB0IC1lIFwic2V0d2QobGlzdC5kaXJzKHJlY3Vyc2l2ZSA9IEZBTFNFKVsxXSk7IHNvdXJjZShTeXMuZ2V0ZW52KCdERVBMT1lfUl9TQ1JJUFQnKSk7XCIiLCJmYWlsT25TdGFuZGFyZEVycm9yIjoiZmFsc2UifX1dfV0sImVudmlyb25tZW50T3B0aW9ucyI6eyJlbWFpbE5vdGlmaWNhdGlvblR5cGUiOiJPbmx5T25GYWlsdXJlIiwiZW1haWxSZWNpcGllbnRzIjoicmVsZWFzZS5lbnZpcm9ubWVudC5vd25lcjtyZWxlYXNlLmNyZWF0b3IiLCJza2lwQXJ0aWZhY3RzRG93bmxvYWQiOmZhbHNlLCJ0aW1lb3V0SW5NaW51dGVzIjowLCJlbmFibGVBY2Nlc3NUb2tlbiI6ZmFsc2UsInB1Ymxpc2hEZXBsb3ltZW50U3RhdHVzIjp0cnVlLCJiYWRnZUVuYWJsZWQiOmZhbHNlLCJhdXRvTGlua1dvcmtJdGVtcyI6ZmFsc2UsInB1bGxSZXF1ZXN0RGVwbG95bWVudEVuYWJsZWQiOmZhbHNlfSwiZGVtYW5kcyI6W10sImNvbmRpdGlvbnMiOlt7Im5hbWUiOiJQcmUtUHJvZCIsImNvbmRpdGlvblR5cGUiOjIsInZhbHVlIjoiNCJ9XSwiZXhlY3V0aW9uUG9saWN5Ijp7ImNvbmN1cnJlbmN5Q291bnQiOjEsInF1ZXVlRGVwdGhDb3VudCI6MH0sInNjaGVkdWxlcyI6W10sImN1cnJlbnRSZWxlYXNlIjp7ImlkIjowLCJ1cmwiOiJodHRwczovL2RmZS1nb3YtdWsudnNybS52aXN1YWxzdHVkaW8uY29tLzY3NGExZjQyLTJlZmItNDMzZC04Nzg2LTc2ZTM2ZjAwYWFiMS9fYXBpcy9SZWxlYXNlL3JlbGVhc2VzLzAiLCJfbGlua3MiOnt9fSwicmV0ZW50aW9uUG9saWN5Ijp7ImRheXNUb0tlZXAiOjMwLCJyZWxlYXNlc1RvS2VlcCI6MywicmV0YWluQnVpbGQiOnRydWV9LCJwcm9jZXNzUGFyYW1ldGVycyI6e30sInByb3BlcnRpZXMiOnsiTGlua0JvYXJkc1dvcmtJdGVtcyI6eyIkdHlwZSI6IlN5c3RlbS5TdHJpbmciLCIkdmFsdWUiOiJGYWxzZSJ9LCJCb2FyZHNFbnZpcm9ubWVudFR5cGUiOnsiJHR5cGUiOiJTeXN0ZW0uU3RyaW5nIiwiJHZhbHVlIjoidW5tYXBwZWQifX0sInByZURlcGxveW1lbnRHYXRlcyI6eyJpZCI6MCwiZ2F0ZXNPcHRpb25zIjpudWxsLCJnYXRlcyI6W119LCJwb3N0RGVwbG95bWVudEdhdGVzIjp7ImlkIjowLCJnYXRlc09wdGlvbnMiOm51bGwsImdhdGVzIjpbXX0sImVudmlyb25tZW50VHJpZ2dlcnMiOltdLCJiYWRnZVVybCI6Imh0dHBzOi8vZGZlLWdvdi11ay52c3JtLnZpc3VhbHN0dWRpby5jb20vX2FwaXMvcHVibGljL1JlbGVhc2UvYmFkZ2UvNjc0YTFmNDItMmVmYi00MzNkLTg3ODYtNzZlMzZmMDBhYWIxLzExNS8zMjgifV0sImFydGlmYWN0cyI6W10sInRyaWdnZXJzIjpbXSwicmVsZWFzZU5hbWVGb3JtYXQiOiJSZWxlYXNlLSQocmV2OnIpIiwidGFncyI6W10sInByb3BlcnRpZXMiOnsiRGVmaW5pdGlvbkNyZWF0aW9uU291cmNlIjp7IiR0eXBlIjoiU3lzdGVtLlN0cmluZyIsIiR2YWx1ZSI6IlJlbGVhc2VOZXcifSwiSW50ZWdyYXRlSmlyYVdvcmtJdGVtcyI6eyIkdHlwZSI6IlN5c3RlbS5TdHJpbmciLCIkdmFsdWUiOiJmYWxzZSJ9LCJJbnRlZ3JhdGVCb2FyZHNXb3JrSXRlbXMiOnsiJHR5cGUiOiJTeXN0ZW0uU3RyaW5nIiwiJHZhbHVlIjoiRmFsc2UifX0sImlkIjoxMTUsIm5hbWUiOiJwaXBlbGluZS10ZW1wbGF0ZS0yc3RhZ2UiLCJwYXRoIjoiXFxUZW1wbGF0ZXMiLCJwcm9qZWN0UmVmZXJlbmNlIjpudWxsLCJ1cmwiOiJodHRwczovL2RmZS1nb3YtdWsudnNybS52aXN1YWxzdHVkaW8uY29tLzY3NGExZjQyLTJlZmItNDMzZC04Nzg2LTc2ZTM2ZjAwYWFiMS9fYXBpcy9SZWxlYXNlL2RlZmluaXRpb25zLzExNSIsIl9saW5rcyI6eyJzZWxmIjp7ImhyZWYiOiJodHRwczovL2RmZS1nb3YtdWsudnNybS52aXN1YWxzdHVkaW8uY29tLzY3NGExZjQyLTJlZmItNDMzZC04Nzg2LTc2ZTM2ZjAwYWFiMS9fYXBpcy9SZWxlYXNlL2RlZmluaXRpb25zLzExNSJ9LCJ3ZWIiOnsiaHJlZiI6Imh0dHBzOi8vZGZlLWdvdi11ay52aXN1YWxzdHVkaW8uY29tLzY3NGExZjQyLTJlZmItNDMzZC04Nzg2LTc2ZTM2ZjAwYWFiMS9fcmVsZWFzZT9kZWZpbml0aW9uSWQ9MTE1In19fQ==').then(res => res.blob()).then(blob => {
+      const downloadURL = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      document.body.appendChild(a);
+      a.href = downloadURL;
+      a.download = 'pipeline-template-2s.json.json'; a.click();
+      window.URL.revokeObjectURL(downloadURL);
+      document.body.removeChild(a);
+    });">
+<button class="btn btn-info"><i class="fa fa-save"></i> Download 2 stage pipeline</button>
+</a>
+</div>
+<div class="cell-output-display">
+<a onclick="fetch('data:application/json;base64,eyJzb3VyY2UiOjIsInJldmlzaW9uIjoyLCJkZXNjcmlwdGlvbiI6bnVsbCwiY3JlYXRlZEJ5Ijp7ImRpc3BsYXlOYW1lIjoiQ2hyaXMgQnJvd25saWUiLCJ1cmwiOiJodHRwczovL3Nwc3Byb2R3ZXUxLnZzc3BzLnZpc3VhbHN0dWRpby5jb20vQTM0ZTk2YTc3LTYwNGItNGJkNS05OWJjLThjNWI4OTdjMGQ1Ni9fYXBpcy9JZGVudGl0aWVzLzFlMzY0MTlhLTQ1NDMtNmE0NS05ZGY5LTdkMGYwMGQyNmM3NyIsIl9saW5rcyI6eyJhdmF0YXIiOnsiaHJlZiI6Imh0dHBzOi8vZGZlLWdvdi11ay52aXN1YWxzdHVkaW8uY29tL19hcGlzL0dyYXBoUHJvZmlsZS9NZW1iZXJBdmF0YXJzL2FhZC5NV1V6TmpReE9XRXRORFUwTXkwM1lUUTFMVGxrWmprdE4yUXdaakF3WkRJMll6YzMifX0sImlkIjoiMWUzNjQxOWEtNDU0My02YTQ1LTlkZjktN2QwZjAwZDI2Yzc3IiwidW5pcXVlTmFtZSI6IkNocmlzdG9waGVyLkJST1dOTElFQEVEVUNBVElPTi5HT1YuVUsiLCJpbWFnZVVybCI6Imh0dHBzOi8vZGZlLWdvdi11ay52aXN1YWxzdHVkaW8uY29tL19hcGlzL0dyYXBoUHJvZmlsZS9NZW1iZXJBdmF0YXJzL2FhZC5NV1V6TmpReE9XRXRORFUwTXkwM1lUUTFMVGxrWmprdE4yUXdaakF3WkRJMll6YzMiLCJkZXNjcmlwdG9yIjoiYWFkLk1XVXpOalF4T1dFdE5EVTBNeTAzWVRRMUxUbGtaamt0TjJRd1pqQXdaREkyWXpjMyJ9LCJjcmVhdGVkT24iOiIyMDIyLTA3LTEyVDE1OjQ5OjE5LjYwMFoiLCJtb2RpZmllZEJ5Ijp7ImRpc3BsYXlOYW1lIjoiQ2hyaXMgQnJvd25saWUiLCJ1cmwiOiJodHRwczovL3Nwc3Byb2R3ZXUxLnZzc3BzLnZpc3VhbHN0dWRpby5jb20vQTM0ZTk2YTc3LTYwNGItNGJkNS05OWJjLThjNWI4OTdjMGQ1Ni9fYXBpcy9JZGVudGl0aWVzLzFlMzY0MTlhLTQ1NDMtNmE0NS05ZGY5LTdkMGYwMGQyNmM3NyIsIl9saW5rcyI6eyJhdmF0YXIiOnsiaHJlZiI6Imh0dHBzOi8vZGZlLWdvdi11ay52aXN1YWxzdHVkaW8uY29tL19hcGlzL0dyYXBoUHJvZmlsZS9NZW1iZXJBdmF0YXJzL2FhZC5NV1V6TmpReE9XRXRORFUwTXkwM1lUUTFMVGxrWmprdE4yUXdaakF3WkRJMll6YzMifX0sImlkIjoiMWUzNjQxOWEtNDU0My02YTQ1LTlkZjktN2QwZjAwZDI2Yzc3IiwidW5pcXVlTmFtZSI6IkNocmlzdG9waGVyLkJST1dOTElFQEVEVUNBVElPTi5HT1YuVUsiLCJpbWFnZVVybCI6Imh0dHBzOi8vZGZlLWdvdi11ay52aXN1YWxzdHVkaW8uY29tL19hcGlzL0dyYXBoUHJvZmlsZS9NZW1iZXJBdmF0YXJzL2FhZC5NV1V6TmpReE9XRXRORFUwTXkwM1lUUTFMVGxrWmprdE4yUXdaakF3WkRJMll6YzMiLCJkZXNjcmlwdG9yIjoiYWFkLk1XVXpOalF4T1dFdE5EVTBNeTAzWVRRMUxUbGtaamt0TjJRd1pqQXdaREkyWXpjMyJ9LCJtb2RpZmllZE9uIjoiMjAyMi0wNy0xMlQxNTo0OTo1MC4zODNaIiwiaXNEZWxldGVkIjpmYWxzZSwidmFyaWFibGVzIjp7fSwidmFyaWFibGVHcm91cHMiOltdLCJlbnZpcm9ubWVudHMiOlt7ImlkIjozMjksIm5hbWUiOiJEZXYiLCJyYW5rIjoxLCJvd25lciI6eyJkaXNwbGF5TmFtZSI6IkNocmlzIEJyb3dubGllIiwidXJsIjoiaHR0cHM6Ly9zcHNwcm9kd2V1MS52c3Nwcy52aXN1YWxzdHVkaW8uY29tL0EzNGU5NmE3Ny02MDRiLTRiZDUtOTliYy04YzViODk3YzBkNTYvX2FwaXMvSWRlbnRpdGllcy8xZTM2NDE5YS00NTQzLTZhNDUtOWRmOS03ZDBmMDBkMjZjNzciLCJfbGlua3MiOnsiYXZhdGFyIjp7ImhyZWYiOiJodHRwczovL2RmZS1nb3YtdWsudmlzdWFsc3R1ZGlvLmNvbS9fYXBpcy9HcmFwaFByb2ZpbGUvTWVtYmVyQXZhdGFycy9hYWQuTVdVek5qUXhPV0V0TkRVME15MDNZVFExTFRsa1pqa3ROMlF3WmpBd1pESTJZemMzIn19LCJpZCI6IjFlMzY0MTlhLTQ1NDMtNmE0NS05ZGY5LTdkMGYwMGQyNmM3NyIsInVuaXF1ZU5hbWUiOiJDaHJpc3RvcGhlci5CUk9XTkxJRUBFRFVDQVRJT04uR09WLlVLIiwiaW1hZ2VVcmwiOiJodHRwczovL2RmZS1nb3YtdWsudmlzdWFsc3R1ZGlvLmNvbS9fYXBpcy9HcmFwaFByb2ZpbGUvTWVtYmVyQXZhdGFycy9hYWQuTVdVek5qUXhPV0V0TkRVME15MDNZVFExTFRsa1pqa3ROMlF3WmpBd1pESTJZemMzIiwiZGVzY3JpcHRvciI6ImFhZC5NV1V6TmpReE9XRXRORFUwTXkwM1lUUTFMVGxrWmprdE4yUXdaakF3WkRJMll6YzMifSwidmFyaWFibGVzIjp7IkFQUF9JRCI6eyJ2YWx1ZSI6IiJ9LCJBUFBfTkFNRSI6eyJ2YWx1ZSI6IiJ9fSwidmFyaWFibGVHcm91cHMiOltdLCJwcmVEZXBsb3lBcHByb3ZhbHMiOnsiYXBwcm92YWxzIjpbeyJyYW5rIjoxLCJpc0F1dG9tYXRlZCI6dHJ1ZSwiaXNOb3RpZmljYXRpb25PbiI6ZmFsc2UsImlkIjoxMTk4fV0sImFwcHJvdmFsT3B0aW9ucyI6eyJyZXF1aXJlZEFwcHJvdmVyQ291bnQiOm51bGwsInJlbGVhc2VDcmVhdG9yQ2FuQmVBcHByb3ZlciI6ZmFsc2UsImF1dG9UcmlnZ2VyZWRBbmRQcmV2aW91c0Vudmlyb25tZW50QXBwcm92ZWRDYW5CZVNraXBwZWQiOmZhbHNlLCJlbmZvcmNlSWRlbnRpdHlSZXZhbGlkYXRpb24iOmZhbHNlLCJ0aW1lb3V0SW5NaW51dGVzIjowLCJleGVjdXRpb25PcmRlciI6MX19LCJkZXBsb3lTdGVwIjp7ImlkIjoxMjAzfSwicG9zdERlcGxveUFwcHJvdmFscyI6eyJhcHByb3ZhbHMiOlt7InJhbmsiOjEsImlzQXV0b21hdGVkIjp0cnVlLCJpc05vdGlmaWNhdGlvbk9uIjpmYWxzZSwiaWQiOjEyMDR9XSwiYXBwcm92YWxPcHRpb25zIjp7InJlcXVpcmVkQXBwcm92ZXJDb3VudCI6bnVsbCwicmVsZWFzZUNyZWF0b3JDYW5CZUFwcHJvdmVyIjpmYWxzZSwiYXV0b1RyaWdnZXJlZEFuZFByZXZpb3VzRW52aXJvbm1lbnRBcHByb3ZlZENhbkJlU2tpcHBlZCI6ZmFsc2UsImVuZm9yY2VJZGVudGl0eVJldmFsaWRhdGlvbiI6ZmFsc2UsInRpbWVvdXRJbk1pbnV0ZXMiOjAsImV4ZWN1dGlvbk9yZGVyIjoyfX0sImRlcGxveVBoYXNlcyI6W3siZGVwbG95bWVudElucHV0Ijp7InBhcmFsbGVsRXhlY3V0aW9uIjp7InBhcmFsbGVsRXhlY3V0aW9uVHlwZSI6MH0sImFnZW50U3BlY2lmaWNhdGlvbiI6bnVsbCwic2tpcEFydGlmYWN0c0Rvd25sb2FkIjpmYWxzZSwiYXJ0aWZhY3RzRG93bmxvYWRJbnB1dCI6eyJkb3dubG9hZElucHV0cyI6W119LCJxdWV1ZUlkIjoyODIsImRlbWFuZHMiOltdLCJlbmFibGVBY2Nlc3NUb2tlbiI6ZmFsc2UsInRpbWVvdXRJbk1pbnV0ZXMiOjAsImpvYkNhbmNlbFRpbWVvdXRJbk1pbnV0ZXMiOjEsImNvbmRpdGlvbiI6InN1Y2NlZWRlZCgpIiwib3ZlcnJpZGVJbnB1dHMiOnt9fSwicmFuayI6MSwicGhhc2VUeXBlIjoxLCJuYW1lIjoiRGVwbG95IHRvIFJTQ29ubmVjdCIsInJlZk5hbWUiOm51bGwsIndvcmtmbG93VGFza3MiOlt7ImVudmlyb25tZW50Ijp7fSwidGFza0lkIjoiZTIxM2ZmMGYtNWQ1Yy00NzkxLTgwMmQtNTJlYTNlN2JlMWYxIiwidmVyc2lvbiI6IjEuKiIsIm5hbWUiOiJQb3dlclNoZWxsIFNjcmlwdCIsInJlZk5hbWUiOiIiLCJlbmFibGVkIjp0cnVlLCJhbHdheXNSdW4iOmZhbHNlLCJjb250aW51ZU9uRXJyb3IiOmZhbHNlLCJ0aW1lb3V0SW5NaW51dGVzIjowLCJyZXRyeUNvdW50T25UYXNrRmFpbHVyZSI6MCwiZGVmaW5pdGlvblR5cGUiOiJ0YXNrIiwib3ZlcnJpZGVJbnB1dHMiOnt9LCJjb25kaXRpb24iOiJzdWNjZWVkZWQoKSIsImlucHV0cyI6eyJzY3JpcHRUeXBlIjoiaW5saW5lU2NyaXB0Iiwic2NyaXB0TmFtZSI6IiQoRGVwbG95LlBvd2Vyc2hlbGwuU2NyaXB0KSIsImFyZ3VtZW50cyI6IiIsIndvcmtpbmdGb2xkZXIiOiIiLCJpbmxpbmVTY3JpcHQiOiJSc2NyaXB0IC1lIFwic2V0d2QobGlzdC5kaXJzKHJlY3Vyc2l2ZSA9IEZBTFNFKVsxXSk7IHNvdXJjZShTeXMuZ2V0ZW52KCdERVBMT1lfUl9TQ1JJUFQnKSk7XCIiLCJmYWlsT25TdGFuZGFyZEVycm9yIjoiZmFsc2UifX1dfV0sImVudmlyb25tZW50T3B0aW9ucyI6eyJlbWFpbE5vdGlmaWNhdGlvblR5cGUiOiJPbmx5T25GYWlsdXJlIiwiZW1haWxSZWNpcGllbnRzIjoicmVsZWFzZS5lbnZpcm9ubWVudC5vd25lcjtyZWxlYXNlLmNyZWF0b3IiLCJza2lwQXJ0aWZhY3RzRG93bmxvYWQiOmZhbHNlLCJ0aW1lb3V0SW5NaW51dGVzIjowLCJlbmFibGVBY2Nlc3NUb2tlbiI6ZmFsc2UsInB1Ymxpc2hEZXBsb3ltZW50U3RhdHVzIjp0cnVlLCJiYWRnZUVuYWJsZWQiOmZhbHNlLCJhdXRvTGlua1dvcmtJdGVtcyI6ZmFsc2UsInB1bGxSZXF1ZXN0RGVwbG95bWVudEVuYWJsZWQiOmZhbHNlfSwiZGVtYW5kcyI6W10sImNvbmRpdGlvbnMiOlt7Im5hbWUiOiJSZWxlYXNlU3RhcnRlZCIsImNvbmRpdGlvblR5cGUiOjEsInZhbHVlIjoiIn1dLCJleGVjdXRpb25Qb2xpY3kiOnsiY29uY3VycmVuY3lDb3VudCI6MSwicXVldWVEZXB0aENvdW50IjowfSwic2NoZWR1bGVzIjpbXSwiY3VycmVudFJlbGVhc2UiOnsiaWQiOjAsInVybCI6Imh0dHBzOi8vZGZlLWdvdi11ay52c3JtLnZpc3VhbHN0dWRpby5jb20vNjc0YTFmNDItMmVmYi00MzNkLTg3ODYtNzZlMzZmMDBhYWIxL19hcGlzL1JlbGVhc2UvcmVsZWFzZXMvMCIsIl9saW5rcyI6e319LCJyZXRlbnRpb25Qb2xpY3kiOnsiZGF5c1RvS2VlcCI6MzAsInJlbGVhc2VzVG9LZWVwIjozLCJyZXRhaW5CdWlsZCI6dHJ1ZX0sInByb2Nlc3NQYXJhbWV0ZXJzIjp7fSwicHJvcGVydGllcyI6eyJMaW5rQm9hcmRzV29ya0l0ZW1zIjp7IiR0eXBlIjoiU3lzdGVtLlN0cmluZyIsIiR2YWx1ZSI6IkZhbHNlIn0sIkJvYXJkc0Vudmlyb25tZW50VHlwZSI6eyIkdHlwZSI6IlN5c3RlbS5TdHJpbmciLCIkdmFsdWUiOiJ1bm1hcHBlZCJ9fSwicHJlRGVwbG95bWVudEdhdGVzIjp7ImlkIjowLCJnYXRlc09wdGlvbnMiOm51bGwsImdhdGVzIjpbXX0sInBvc3REZXBsb3ltZW50R2F0ZXMiOnsiaWQiOjAsImdhdGVzT3B0aW9ucyI6bnVsbCwiZ2F0ZXMiOltdfSwiZW52aXJvbm1lbnRUcmlnZ2VycyI6W10sImJhZGdlVXJsIjoiaHR0cHM6Ly9kZmUtZ292LXVrLnZzcm0udmlzdWFsc3R1ZGlvLmNvbS9fYXBpcy9wdWJsaWMvUmVsZWFzZS9iYWRnZS82NzRhMWY0Mi0yZWZiLTQzM2QtODc4Ni03NmUzNmYwMGFhYjEvMTE2LzMyOSJ9LHsiaWQiOjMzMCwibmFtZSI6IlByZS1Qcm9kIiwicmFuayI6Miwib3duZXIiOnsiZGlzcGxheU5hbWUiOiJDaHJpcyBCcm93bmxpZSIsInVybCI6Imh0dHBzOi8vc3BzcHJvZHdldTEudnNzcHMudmlzdWFsc3R1ZGlvLmNvbS9BMzRlOTZhNzctNjA0Yi00YmQ1LTk5YmMtOGM1Yjg5N2MwZDU2L19hcGlzL0lkZW50aXRpZXMvMWUzNjQxOWEtNDU0My02YTQ1LTlkZjktN2QwZjAwZDI2Yzc3IiwiX2xpbmtzIjp7ImF2YXRhciI6eyJocmVmIjoiaHR0cHM6Ly9kZmUtZ292LXVrLnZpc3VhbHN0dWRpby5jb20vX2FwaXMvR3JhcGhQcm9maWxlL01lbWJlckF2YXRhcnMvYWFkLk1XVXpOalF4T1dFdE5EVTBNeTAzWVRRMUxUbGtaamt0TjJRd1pqQXdaREkyWXpjMyJ9fSwiaWQiOiIxZTM2NDE5YS00NTQzLTZhNDUtOWRmOS03ZDBmMDBkMjZjNzciLCJ1bmlxdWVOYW1lIjoiQ2hyaXN0b3BoZXIuQlJPV05MSUVARURVQ0FUSU9OLkdPVi5VSyIsImltYWdlVXJsIjoiaHR0cHM6Ly9kZmUtZ292LXVrLnZpc3VhbHN0dWRpby5jb20vX2FwaXMvR3JhcGhQcm9maWxlL01lbWJlckF2YXRhcnMvYWFkLk1XVXpOalF4T1dFdE5EVTBNeTAzWVRRMUxUbGtaamt0TjJRd1pqQXdaREkyWXpjMyIsImRlc2NyaXB0b3IiOiJhYWQuTVdVek5qUXhPV0V0TkRVME15MDNZVFExTFRsa1pqa3ROMlF3WmpBd1pESTJZemMzIn0sInZhcmlhYmxlcyI6eyJBUFBfSUQiOnsidmFsdWUiOiIifSwiQVBQX05BTUUiOnsidmFsdWUiOiIifX0sInZhcmlhYmxlR3JvdXBzIjpbXSwicHJlRGVwbG95QXBwcm92YWxzIjp7ImFwcHJvdmFscyI6W3sicmFuayI6MSwiaXNBdXRvbWF0ZWQiOnRydWUsImlzTm90aWZpY2F0aW9uT24iOmZhbHNlLCJpZCI6MTE5OX1dLCJhcHByb3ZhbE9wdGlvbnMiOnsicmVxdWlyZWRBcHByb3ZlckNvdW50IjpudWxsLCJyZWxlYXNlQ3JlYXRvckNhbkJlQXBwcm92ZXIiOmZhbHNlLCJhdXRvVHJpZ2dlcmVkQW5kUHJldmlvdXNFbnZpcm9ubWVudEFwcHJvdmVkQ2FuQmVTa2lwcGVkIjpmYWxzZSwiZW5mb3JjZUlkZW50aXR5UmV2YWxpZGF0aW9uIjpmYWxzZSwidGltZW91dEluTWludXRlcyI6MCwiZXhlY3V0aW9uT3JkZXIiOjF9fSwiZGVwbG95U3RlcCI6eyJpZCI6MTIwMn0sInBvc3REZXBsb3lBcHByb3ZhbHMiOnsiYXBwcm92YWxzIjpbeyJyYW5rIjoxLCJpc0F1dG9tYXRlZCI6dHJ1ZSwiaXNOb3RpZmljYXRpb25PbiI6ZmFsc2UsImlkIjoxMjA1fV0sImFwcHJvdmFsT3B0aW9ucyI6eyJyZXF1aXJlZEFwcHJvdmVyQ291bnQiOm51bGwsInJlbGVhc2VDcmVhdG9yQ2FuQmVBcHByb3ZlciI6ZmFsc2UsImF1dG9UcmlnZ2VyZWRBbmRQcmV2aW91c0Vudmlyb25tZW50QXBwcm92ZWRDYW5CZVNraXBwZWQiOmZhbHNlLCJlbmZvcmNlSWRlbnRpdHlSZXZhbGlkYXRpb24iOmZhbHNlLCJ0aW1lb3V0SW5NaW51dGVzIjowLCJleGVjdXRpb25PcmRlciI6Mn19LCJkZXBsb3lQaGFzZXMiOlt7ImRlcGxveW1lbnRJbnB1dCI6eyJwYXJhbGxlbEV4ZWN1dGlvbiI6eyJwYXJhbGxlbEV4ZWN1dGlvblR5cGUiOjB9LCJhZ2VudFNwZWNpZmljYXRpb24iOm51bGwsInNraXBBcnRpZmFjdHNEb3dubG9hZCI6ZmFsc2UsImFydGlmYWN0c0Rvd25sb2FkSW5wdXQiOnsiZG93bmxvYWRJbnB1dHMiOltdfSwicXVldWVJZCI6MjgyLCJkZW1hbmRzIjpbXSwiZW5hYmxlQWNjZXNzVG9rZW4iOmZhbHNlLCJ0aW1lb3V0SW5NaW51dGVzIjowLCJqb2JDYW5jZWxUaW1lb3V0SW5NaW51dGVzIjoxLCJjb25kaXRpb24iOiJzdWNjZWVkZWQoKSIsIm92ZXJyaWRlSW5wdXRzIjp7fX0sInJhbmsiOjEsInBoYXNlVHlwZSI6MSwibmFtZSI6IkRlcGxveSB0byBSU0Nvbm5lY3QiLCJyZWZOYW1lIjpudWxsLCJ3b3JrZmxvd1Rhc2tzIjpbeyJlbnZpcm9ubWVudCI6e30sInRhc2tJZCI6ImUyMTNmZjBmLTVkNWMtNDc5MS04MDJkLTUyZWEzZTdiZTFmMSIsInZlcnNpb24iOiIxLioiLCJuYW1lIjoiUG93ZXJTaGVsbCBTY3JpcHQiLCJyZWZOYW1lIjoiIiwiZW5hYmxlZCI6dHJ1ZSwiYWx3YXlzUnVuIjpmYWxzZSwiY29udGludWVPbkVycm9yIjpmYWxzZSwidGltZW91dEluTWludXRlcyI6MCwicmV0cnlDb3VudE9uVGFza0ZhaWx1cmUiOjAsImRlZmluaXRpb25UeXBlIjoidGFzayIsIm92ZXJyaWRlSW5wdXRzIjp7fSwiY29uZGl0aW9uIjoic3VjY2VlZGVkKCkiLCJpbnB1dHMiOnsic2NyaXB0VHlwZSI6ImlubGluZVNjcmlwdCIsInNjcmlwdE5hbWUiOiIkKERlcGxveS5Qb3dlcnNoZWxsLlNjcmlwdCkiLCJhcmd1bWVudHMiOiIiLCJ3b3JraW5nRm9sZGVyIjoiIiwiaW5saW5lU2NyaXB0IjoiUnNjcmlwdCAtZSBcInNldHdkKGxpc3QuZGlycyhyZWN1cnNpdmUgPSBGQUxTRSlbMV0pOyBzb3VyY2UoU3lzLmdldGVudignREVQTE9ZX1JfU0NSSVBUJykpO1wiIiwiZmFpbE9uU3RhbmRhcmRFcnJvciI6ImZhbHNlIn19XX1dLCJlbnZpcm9ubWVudE9wdGlvbnMiOnsiZW1haWxOb3RpZmljYXRpb25UeXBlIjoiT25seU9uRmFpbHVyZSIsImVtYWlsUmVjaXBpZW50cyI6InJlbGVhc2UuZW52aXJvbm1lbnQub3duZXI7cmVsZWFzZS5jcmVhdG9yIiwic2tpcEFydGlmYWN0c0Rvd25sb2FkIjpmYWxzZSwidGltZW91dEluTWludXRlcyI6MCwiZW5hYmxlQWNjZXNzVG9rZW4iOmZhbHNlLCJwdWJsaXNoRGVwbG95bWVudFN0YXR1cyI6dHJ1ZSwiYmFkZ2VFbmFibGVkIjpmYWxzZSwiYXV0b0xpbmtXb3JrSXRlbXMiOmZhbHNlLCJwdWxsUmVxdWVzdERlcGxveW1lbnRFbmFibGVkIjpmYWxzZX0sImRlbWFuZHMiOltdLCJjb25kaXRpb25zIjpbeyJuYW1lIjoiUmVsZWFzZVN0YXJ0ZWQiLCJjb25kaXRpb25UeXBlIjoxLCJ2YWx1ZSI6IiJ9XSwiZXhlY3V0aW9uUG9saWN5Ijp7ImNvbmN1cnJlbmN5Q291bnQiOjEsInF1ZXVlRGVwdGhDb3VudCI6MH0sInNjaGVkdWxlcyI6W10sImN1cnJlbnRSZWxlYXNlIjp7ImlkIjowLCJ1cmwiOiJodHRwczovL2RmZS1nb3YtdWsudnNybS52aXN1YWxzdHVkaW8uY29tLzY3NGExZjQyLTJlZmItNDMzZC04Nzg2LTc2ZTM2ZjAwYWFiMS9fYXBpcy9SZWxlYXNlL3JlbGVhc2VzLzAiLCJfbGlua3MiOnt9fSwicmV0ZW50aW9uUG9saWN5Ijp7ImRheXNUb0tlZXAiOjMwLCJyZWxlYXNlc1RvS2VlcCI6MywicmV0YWluQnVpbGQiOnRydWV9LCJwcm9jZXNzUGFyYW1ldGVycyI6e30sInByb3BlcnRpZXMiOnsiTGlua0JvYXJkc1dvcmtJdGVtcyI6eyIkdHlwZSI6IlN5c3RlbS5TdHJpbmciLCIkdmFsdWUiOiJGYWxzZSJ9LCJCb2FyZHNFbnZpcm9ubWVudFR5cGUiOnsiJHR5cGUiOiJTeXN0ZW0uU3RyaW5nIiwiJHZhbHVlIjoidW5tYXBwZWQifX0sInByZURlcGxveW1lbnRHYXRlcyI6eyJpZCI6MCwiZ2F0ZXNPcHRpb25zIjpudWxsLCJnYXRlcyI6W119LCJwb3N0RGVwbG95bWVudEdhdGVzIjp7ImlkIjowLCJnYXRlc09wdGlvbnMiOm51bGwsImdhdGVzIjpbXX0sImVudmlyb25tZW50VHJpZ2dlcnMiOltdLCJiYWRnZVVybCI6Imh0dHBzOi8vZGZlLWdvdi11ay52c3JtLnZpc3VhbHN0dWRpby5jb20vX2FwaXMvcHVibGljL1JlbGVhc2UvYmFkZ2UvNjc0YTFmNDItMmVmYi00MzNkLTg3ODYtNzZlMzZmMDBhYWIxLzExNi8zMzAifSx7ImlkIjozMzEsIm5hbWUiOiJQcm9kIiwicmFuayI6Mywib3duZXIiOnsiZGlzcGxheU5hbWUiOiJDaHJpcyBCcm93bmxpZSIsInVybCI6Imh0dHBzOi8vc3BzcHJvZHdldTEudnNzcHMudmlzdWFsc3R1ZGlvLmNvbS9BMzRlOTZhNzctNjA0Yi00YmQ1LTk5YmMtOGM1Yjg5N2MwZDU2L19hcGlzL0lkZW50aXRpZXMvMWUzNjQxOWEtNDU0My02YTQ1LTlkZjktN2QwZjAwZDI2Yzc3IiwiX2xpbmtzIjp7ImF2YXRhciI6eyJocmVmIjoiaHR0cHM6Ly9kZmUtZ292LXVrLnZpc3VhbHN0dWRpby5jb20vX2FwaXMvR3JhcGhQcm9maWxlL01lbWJlckF2YXRhcnMvYWFkLk1XVXpOalF4T1dFdE5EVTBNeTAzWVRRMUxUbGtaamt0TjJRd1pqQXdaREkyWXpjMyJ9fSwiaWQiOiIxZTM2NDE5YS00NTQzLTZhNDUtOWRmOS03ZDBmMDBkMjZjNzciLCJ1bmlxdWVOYW1lIjoiQ2hyaXN0b3BoZXIuQlJPV05MSUVARURVQ0FUSU9OLkdPVi5VSyIsImltYWdlVXJsIjoiaHR0cHM6Ly9kZmUtZ292LXVrLnZpc3VhbHN0dWRpby5jb20vX2FwaXMvR3JhcGhQcm9maWxlL01lbWJlckF2YXRhcnMvYWFkLk1XVXpOalF4T1dFdE5EVTBNeTAzWVRRMUxUbGtaamt0TjJRd1pqQXdaREkyWXpjMyIsImRlc2NyaXB0b3IiOiJhYWQuTVdVek5qUXhPV0V0TkRVME15MDNZVFExTFRsa1pqa3ROMlF3WmpBd1pESTJZemMzIn0sInZhcmlhYmxlcyI6eyJBUFBfSUQiOnsidmFsdWUiOiIifSwiQVBQX05BTUUiOnsidmFsdWUiOiIifX0sInZhcmlhYmxlR3JvdXBzIjpbXSwicHJlRGVwbG95QXBwcm92YWxzIjp7ImFwcHJvdmFscyI6W3sicmFuayI6MSwiaXNBdXRvbWF0ZWQiOmZhbHNlLCJpc05vdGlmaWNhdGlvbk9uIjpmYWxzZSwiYXBwcm92ZXIiOnsiZGlzcGxheU5hbWUiOiJDaHJpcyBCcm93bmxpZSIsInVybCI6Imh0dHBzOi8vc3BzcHJvZHdldTEudnNzcHMudmlzdWFsc3R1ZGlvLmNvbS9BMzRlOTZhNzctNjA0Yi00YmQ1LTk5YmMtOGM1Yjg5N2MwZDU2L19hcGlzL0lkZW50aXRpZXMvMWUzNjQxOWEtNDU0My02YTQ1LTlkZjktN2QwZjAwZDI2Yzc3IiwiX2xpbmtzIjp7ImF2YXRhciI6eyJocmVmIjoiaHR0cHM6Ly9kZmUtZ292LXVrLnZpc3VhbHN0dWRpby5jb20vX2FwaXMvR3JhcGhQcm9maWxlL01lbWJlckF2YXRhcnMvYWFkLk1XVXpOalF4T1dFdE5EVTBNeTAzWVRRMUxUbGtaamt0TjJRd1pqQXdaREkyWXpjMyJ9fSwiaWQiOiIxZTM2NDE5YS00NTQzLTZhNDUtOWRmOS03ZDBmMDBkMjZjNzciLCJ1bmlxdWVOYW1lIjoiQ2hyaXN0b3BoZXIuQlJPV05MSUVARURVQ0FUSU9OLkdPVi5VSyIsImltYWdlVXJsIjoiaHR0cHM6Ly9kZmUtZ292LXVrLnZpc3VhbHN0dWRpby5jb20vX2FwaXMvR3JhcGhQcm9maWxlL01lbWJlckF2YXRhcnMvYWFkLk1XVXpOalF4T1dFdE5EVTBNeTAzWVRRMUxUbGtaamt0TjJRd1pqQXdaREkyWXpjMyIsImRlc2NyaXB0b3IiOiJhYWQuTVdVek5qUXhPV0V0TkRVME15MDNZVFExTFRsa1pqa3ROMlF3WmpBd1pESTJZemMzIn0sImlkIjoxMjAwfV0sImFwcHJvdmFsT3B0aW9ucyI6eyJyZXF1aXJlZEFwcHJvdmVyQ291bnQiOm51bGwsInJlbGVhc2VDcmVhdG9yQ2FuQmVBcHByb3ZlciI6dHJ1ZSwiYXV0b1RyaWdnZXJlZEFuZFByZXZpb3VzRW52aXJvbm1lbnRBcHByb3ZlZENhbkJlU2tpcHBlZCI6ZmFsc2UsImVuZm9yY2VJZGVudGl0eVJldmFsaWRhdGlvbiI6ZmFsc2UsInRpbWVvdXRJbk1pbnV0ZXMiOjAsImV4ZWN1dGlvbk9yZGVyIjoxfX0sImRlcGxveVN0ZXAiOnsiaWQiOjEyMDF9LCJwb3N0RGVwbG95QXBwcm92YWxzIjp7ImFwcHJvdmFscyI6W3sicmFuayI6MSwiaXNBdXRvbWF0ZWQiOnRydWUsImlzTm90aWZpY2F0aW9uT24iOmZhbHNlLCJpZCI6MTIwNn1dLCJhcHByb3ZhbE9wdGlvbnMiOnsicmVxdWlyZWRBcHByb3ZlckNvdW50IjpudWxsLCJyZWxlYXNlQ3JlYXRvckNhbkJlQXBwcm92ZXIiOmZhbHNlLCJhdXRvVHJpZ2dlcmVkQW5kUHJldmlvdXNFbnZpcm9ubWVudEFwcHJvdmVkQ2FuQmVTa2lwcGVkIjpmYWxzZSwiZW5mb3JjZUlkZW50aXR5UmV2YWxpZGF0aW9uIjpmYWxzZSwidGltZW91dEluTWludXRlcyI6MCwiZXhlY3V0aW9uT3JkZXIiOjJ9fSwiZGVwbG95UGhhc2VzIjpbeyJkZXBsb3ltZW50SW5wdXQiOnsicGFyYWxsZWxFeGVjdXRpb24iOnsicGFyYWxsZWxFeGVjdXRpb25UeXBlIjowfSwiYWdlbnRTcGVjaWZpY2F0aW9uIjpudWxsLCJza2lwQXJ0aWZhY3RzRG93bmxvYWQiOmZhbHNlLCJhcnRpZmFjdHNEb3dubG9hZElucHV0Ijp7ImRvd25sb2FkSW5wdXRzIjpbXX0sInF1ZXVlSWQiOjI4MiwiZGVtYW5kcyI6W10sImVuYWJsZUFjY2Vzc1Rva2VuIjpmYWxzZSwidGltZW91dEluTWludXRlcyI6MCwiam9iQ2FuY2VsVGltZW91dEluTWludXRlcyI6MSwiY29uZGl0aW9uIjoic3VjY2VlZGVkKCkiLCJvdmVycmlkZUlucHV0cyI6e319LCJyYW5rIjoxLCJwaGFzZVR5cGUiOjEsIm5hbWUiOiJEZXBsb3kgdG8gUlNDb25uZWN0IiwicmVmTmFtZSI6bnVsbCwid29ya2Zsb3dUYXNrcyI6W3siZW52aXJvbm1lbnQiOnt9LCJ0YXNrSWQiOiJlMjEzZmYwZi01ZDVjLTQ3OTEtODAyZC01MmVhM2U3YmUxZjEiLCJ2ZXJzaW9uIjoiMS4qIiwibmFtZSI6IlBvd2VyU2hlbGwgU2NyaXB0IiwicmVmTmFtZSI6IiIsImVuYWJsZWQiOnRydWUsImFsd2F5c1J1biI6ZmFsc2UsImNvbnRpbnVlT25FcnJvciI6ZmFsc2UsInRpbWVvdXRJbk1pbnV0ZXMiOjAsInJldHJ5Q291bnRPblRhc2tGYWlsdXJlIjowLCJkZWZpbml0aW9uVHlwZSI6InRhc2siLCJvdmVycmlkZUlucHV0cyI6e30sImNvbmRpdGlvbiI6InN1Y2NlZWRlZCgpIiwiaW5wdXRzIjp7InNjcmlwdFR5cGUiOiJpbmxpbmVTY3JpcHQiLCJzY3JpcHROYW1lIjoiJChEZXBsb3kuUG93ZXJzaGVsbC5TY3JpcHQpIiwiYXJndW1lbnRzIjoiIiwid29ya2luZ0ZvbGRlciI6IiIsImlubGluZVNjcmlwdCI6IlJzY3JpcHQgLWUgXCJzZXR3ZChsaXN0LmRpcnMocmVjdXJzaXZlID0gRkFMU0UpWzFdKTsgc291cmNlKFN5cy5nZXRlbnYoJ0RFUExPWV9SX1NDUklQVCcpKTtcIiIsImZhaWxPblN0YW5kYXJkRXJyb3IiOiJmYWxzZSJ9fV19XSwiZW52aXJvbm1lbnRPcHRpb25zIjp7ImVtYWlsTm90aWZpY2F0aW9uVHlwZSI6Ik9ubHlPbkZhaWx1cmUiLCJlbWFpbFJlY2lwaWVudHMiOiJyZWxlYXNlLmVudmlyb25tZW50Lm93bmVyO3JlbGVhc2UuY3JlYXRvciIsInNraXBBcnRpZmFjdHNEb3dubG9hZCI6ZmFsc2UsInRpbWVvdXRJbk1pbnV0ZXMiOjAsImVuYWJsZUFjY2Vzc1Rva2VuIjpmYWxzZSwicHVibGlzaERlcGxveW1lbnRTdGF0dXMiOnRydWUsImJhZGdlRW5hYmxlZCI6ZmFsc2UsImF1dG9MaW5rV29ya0l0ZW1zIjpmYWxzZSwicHVsbFJlcXVlc3REZXBsb3ltZW50RW5hYmxlZCI6ZmFsc2V9LCJkZW1hbmRzIjpbXSwiY29uZGl0aW9ucyI6W3sibmFtZSI6IlByZS1Qcm9kIiwiY29uZGl0aW9uVHlwZSI6MiwidmFsdWUiOiI0In1dLCJleGVjdXRpb25Qb2xpY3kiOnsiY29uY3VycmVuY3lDb3VudCI6MSwicXVldWVEZXB0aENvdW50IjowfSwic2NoZWR1bGVzIjpbXSwiY3VycmVudFJlbGVhc2UiOnsiaWQiOjAsInVybCI6Imh0dHBzOi8vZGZlLWdvdi11ay52c3JtLnZpc3VhbHN0dWRpby5jb20vNjc0YTFmNDItMmVmYi00MzNkLTg3ODYtNzZlMzZmMDBhYWIxL19hcGlzL1JlbGVhc2UvcmVsZWFzZXMvMCIsIl9saW5rcyI6e319LCJyZXRlbnRpb25Qb2xpY3kiOnsiZGF5c1RvS2VlcCI6MzAsInJlbGVhc2VzVG9LZWVwIjozLCJyZXRhaW5CdWlsZCI6dHJ1ZX0sInByb2Nlc3NQYXJhbWV0ZXJzIjp7fSwicHJvcGVydGllcyI6eyJMaW5rQm9hcmRzV29ya0l0ZW1zIjp7IiR0eXBlIjoiU3lzdGVtLlN0cmluZyIsIiR2YWx1ZSI6IkZhbHNlIn0sIkJvYXJkc0Vudmlyb25tZW50VHlwZSI6eyIkdHlwZSI6IlN5c3RlbS5TdHJpbmciLCIkdmFsdWUiOiJ1bm1hcHBlZCJ9fSwicHJlRGVwbG95bWVudEdhdGVzIjp7ImlkIjowLCJnYXRlc09wdGlvbnMiOm51bGwsImdhdGVzIjpbXX0sInBvc3REZXBsb3ltZW50R2F0ZXMiOnsiaWQiOjAsImdhdGVzT3B0aW9ucyI6bnVsbCwiZ2F0ZXMiOltdfSwiZW52aXJvbm1lbnRUcmlnZ2VycyI6W10sImJhZGdlVXJsIjoiaHR0cHM6Ly9kZmUtZ292LXVrLnZzcm0udmlzdWFsc3R1ZGlvLmNvbS9fYXBpcy9wdWJsaWMvUmVsZWFzZS9iYWRnZS82NzRhMWY0Mi0yZWZiLTQzM2QtODc4Ni03NmUzNmYwMGFhYjEvMTE2LzMzMSJ9XSwiYXJ0aWZhY3RzIjpbXSwidHJpZ2dlcnMiOltdLCJyZWxlYXNlTmFtZUZvcm1hdCI6IlJlbGVhc2UtJChyZXY6cikiLCJ0YWdzIjpbXSwicHJvcGVydGllcyI6eyJEZWZpbml0aW9uQ3JlYXRpb25Tb3VyY2UiOnsiJHR5cGUiOiJTeXN0ZW0uU3RyaW5nIiwiJHZhbHVlIjoiUmVsZWFzZU5ldyJ9LCJJbnRlZ3JhdGVKaXJhV29ya0l0ZW1zIjp7IiR0eXBlIjoiU3lzdGVtLlN0cmluZyIsIiR2YWx1ZSI6ImZhbHNlIn0sIkludGVncmF0ZUJvYXJkc1dvcmtJdGVtcyI6eyIkdHlwZSI6IlN5c3RlbS5TdHJpbmciLCIkdmFsdWUiOiJGYWxzZSJ9fSwiaWQiOjExNiwibmFtZSI6InBpcGVsaW5lLXRlbXBsYXRlLTNzdGFnZSIsInBhdGgiOiJcXFRlbXBsYXRlcyIsInByb2plY3RSZWZlcmVuY2UiOm51bGwsInVybCI6Imh0dHBzOi8vZGZlLWdvdi11ay52c3JtLnZpc3VhbHN0dWRpby5jb20vNjc0YTFmNDItMmVmYi00MzNkLTg3ODYtNzZlMzZmMDBhYWIxL19hcGlzL1JlbGVhc2UvZGVmaW5pdGlvbnMvMTE2IiwiX2xpbmtzIjp7InNlbGYiOnsiaHJlZiI6Imh0dHBzOi8vZGZlLWdvdi11ay52c3JtLnZpc3VhbHN0dWRpby5jb20vNjc0YTFmNDItMmVmYi00MzNkLTg3ODYtNzZlMzZmMDBhYWIxL19hcGlzL1JlbGVhc2UvZGVmaW5pdGlvbnMvMTE2In0sIndlYiI6eyJocmVmIjoiaHR0cHM6Ly9kZmUtZ292LXVrLnZpc3VhbHN0dWRpby5jb20vNjc0YTFmNDItMmVmYi00MzNkLTg3ODYtNzZlMzZmMDBhYWIxL19yZWxlYXNlP2RlZmluaXRpb25JZD0xMTYifX19').then(res => res.blob()).then(blob => {
+      const downloadURL = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      document.body.appendChild(a);
+      a.href = downloadURL;
+      a.download = 'pipeline-template-3s.json.json'; a.click();
+      window.URL.revokeObjectURL(downloadURL);
+      document.body.removeChild(a);
+    });">
+<button class="btn btn-info"><i class="fa fa-save"></i> Download 3 stage pipeline</button>
+</a>
+</div>
+</div>
+</section>
+<section id="implementing-your-template" class="level2">
+<h2 class="anchored" data-anchor-id="implementing-your-template">Implementing your template</h2>
+<p>Once you have the json file template downloaded from above, you can create a new Release pipeline for your content. In an Azure Devops Project, go to Pipelines -&gt; Releases (on the navigation menu on the left).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/release_pipelines.PNG" class="lightbox" title="Release pipelines" data-gallery="quarto-lightbox-gallery-3"><img src="img/release_pipelines.PNG" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Release pipelines</figcaption><p></p>
+</figure>
+</div>
+<p>Click on ‘New’ and ‘Import Release Pipeline’</p>
+<p><a href="img/import_release_pipeline.PNG" class="lightbox" title="Import release pipelines" data-gallery="quarto-lightbox-gallery-4"><img src="img/import_release_pipeline.PNG" class="img-fluid" alt="Import release pipelines"></a> This should bring up a dialog box where you can select the json template you downloaded above. Click OK and this should take you to your pipeline editing page.</p>
+<p>There are a few more steps you must take before you can create your first release and these will differ depending on which of the two templates you are using.</p>
+<section id="two-stage-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="two-stage-pipeline">Two-stage pipeline</h3>
+<p>If you are using a 2-stage pipeline, your pipeline page should look like the image below:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/imported_two_stage_pipeline_annotated.PNG" class="lightbox" title="Imported 2-stage pipelines" data-gallery="quarto-lightbox-gallery-5"><img src="img/imported_two_stage_pipeline_annotated.PNG" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Imported 2-stage pipelines</figcaption><p></p>
+</figure>
+</div>
+<ol type="1">
+<li><p>First, you should rename your pipeline. Use the name of your repository or content and use hyphens instead of spaces.</p></li>
+<li><p>Next you need to add the artifact, if you click on the box on the left that says ‘Add artifact’, it will bring up the menu below.</p></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/add_artifact.PNG" class="lightbox" title="Add artifact" data-gallery="quarto-lightbox-gallery-6"><img src="img/add_artifact.PNG" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Add artifact</figcaption><p></p>
+</figure>
+</div>
+<p>Here you should select your Azure Devops Project and your repository, after which some additional options will appear below. You should only need to add information for two of them.</p>
+<ul>
+<li><p>For ‘Default branch’, select your main branch (i.e.&nbsp;‘master’ or ‘main’)</p></li>
+<li><p>For ‘Default version’, select ‘Latest from the default branch’</p></li>
+</ul>
+<p>Then you can click ‘Add’ to add your artifact.</p>
+<ol start="3" type="1">
+<li>Click on the ‘Pre-prod’ box, which will take you to the Task page for that stage. If you click on the ‘Deploy to RSConnect’ task, you should see something similiar to below.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/pipeline_preprod_task.PNG" class="lightbox" title="Preprod task" data-gallery="quarto-lightbox-gallery-7"><img src="img/pipeline_preprod_task.PNG" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Preprod task</figcaption><p></p>
+</figure>
+</div>
+<p>In the setting that requires attention - ‘Agent pool’ - select ‘RSConnect’. If you cannot see it, you will have to raise a service desk request to allow your Azure Devops project access to the build server.</p>
+<p>You can then go back to the pipeline view by clicking ‘Pipeline’ in the menu above.</p>
+<ol start="4" type="1">
+<li>Click the oval button on the left of the Prod stage. This will bring up the pre-deployment conditions for deployment to production.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/pre_deployment_conditions.PNG" class="lightbox" title="Pre-deployment conditions" data-gallery="quarto-lightbox-gallery-8"><img src="img/pre_deployment_conditions.PNG" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Pre-deployment conditions</figcaption><p></p>
+</figure>
+</div>
+<p>Here you can either select someone to be the approver, or disable this if you do not want it.</p>
+<ol start="5" type="1">
+<li><p>Repeat step 3, but for Prod this time.</p></li>
+<li><p>Next you should set up your artifact to create a release every time you make a change to the main branch. You can do this by clicking on the lightning bolt symbol on the right of your artifact. This will bring up a menu where you can enable ‘Continuous deployment trigger’ and select your main branch so that commits to other branches do not inadvertently cause a release.</p></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/continuous_deployment_trigger.PNG" class="lightbox" title="Continuous deployment trigger" data-gallery="quarto-lightbox-gallery-9"><img src="img/continuous_deployment_trigger.PNG" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Continuous deployment trigger</figcaption><p></p>
+</figure>
+</div>
+<ol start="7" type="1">
+<li>Now you just need to make one more change and you will be ready to create a release and deploy your content! Click on ‘Variables’ on the menu at the top. This will bring up a list of three variables, two named APP_ID (you’ll fill those in later) and one called APP_NAME. Enter a value for the variable APP_NAME: use the name of your project, with hyphens instead of spaces.</li>
+</ol>
+<p>Now you can save your pipeline and go to ‘Creating your first release’!</p>
+</section>
+<section id="three-stage-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="three-stage-pipeline">Three-stage pipeline</h3>
+<p>If you are using a 3-stage pipeline, your pipeline page should look like the image below:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/imported_three_stage_pipeline_annotated.PNG" class="lightbox" title="Imported 3-stage pipelines" data-gallery="quarto-lightbox-gallery-10"><img src="img/imported_three_stage_pipeline_annotated.PNG" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Imported 3-stage pipelines</figcaption><p></p>
+</figure>
+</div>
+<ol type="1">
+<li><p>First, you should rename your pipeline. Use the name of your repository or content and use hyphens instead of spaces.</p></li>
+<li><p>Next you need to add the artifact, if you click on the box on the left that says ‘Add artifact’, it will bring up the menu below.</p></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/add_artifact.PNG" class="lightbox" title="Add artifact" data-gallery="quarto-lightbox-gallery-11"><img src="img/add_artifact.PNG" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Add artifact</figcaption><p></p>
+</figure>
+</div>
+<p>Here you should select your Azure Devops Project and your repository, after which some additional options will appear below. You should only need to add information for two of them.</p>
+<ul>
+<li><p>For ‘Default branch’, select your main branch (i.e.&nbsp;‘master’ or ‘main’)</p></li>
+<li><p>For ‘Default version’, select ‘Latest from the default branch’</p></li>
+</ul>
+<p>Then you can click ‘Add’ to add your artifact.</p>
+<ol start="3" type="1">
+<li>Click the oval button on the left of the Dev stage. This will bring up the pre-deployment conditions for deployment to dev.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/dev_pre_deployment.PNG" class="lightbox" title="Dev pre-deployment conditions" data-gallery="quarto-lightbox-gallery-12"><img src="img/dev_pre_deployment.PNG" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Dev pre-deployment conditions</figcaption><p></p>
+</figure>
+</div>
+<p>Here you should enable Artifact filters, then click ‘Add’ and select your artifact. In the new filter, select Type as ‘Exclude’ and Branch as your main branch (e.g.&nbsp;main or master). This will ensure that deployment will only happen to Dev when a change is made to a non-main branch.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/dev_pre_deployment_filtered.PNG" class="lightbox" title="Dev pre-deployment filter" data-gallery="quarto-lightbox-gallery-13"><img src="img/dev_pre_deployment_filtered.PNG" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Dev pre-deployment filter</figcaption><p></p>
+</figure>
+</div>
+<ol start="4" type="1">
+<li>Click on the ‘Dev’ box, which will take you to the Task page for that stage. If you click on the ‘Deploy to RSConnect’ task, you should see something similiar to below.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/pipeline_preprod_task.PNG" class="lightbox" title="Preprod task" data-gallery="quarto-lightbox-gallery-14"><img src="img/pipeline_preprod_task.PNG" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Preprod task</figcaption><p></p>
+</figure>
+</div>
+<p>In the setting that requires attention - ‘Agent pool’ - select ‘RSConnect’. If you cannot see it, you will have to raise a service desk request to allow your Azure Devops project access to the build server.</p>
+<p>You can then go back to the pipeline view by clicking ‘Pipeline’ in the menu above.</p>
+<ol start="5" type="1">
+<li><p>Repeat step 4, for Pre-Prod.</p></li>
+<li><p>Click the oval button on the left of the Prod stage. This will bring up the pre-deployment conditions for deployment to production.</p></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/pre_deployment_conditions.PNG" class="lightbox" title="Pre-deployment conditions" data-gallery="quarto-lightbox-gallery-15"><img src="img/pre_deployment_conditions.PNG" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Pre-deployment conditions</figcaption><p></p>
+</figure>
+</div>
+<p>Here you can either select someone to be the approver, or disable this if you do not want it.</p>
+<ol start="7" type="1">
+<li><p>Repeat step 4, but for Prod this time.</p></li>
+<li><p>Next you should set up your artifact to create a release every time you make a change to the main branch. You can do this by clicking on the lightning bolt symbol on the right of your artifact. This will bring up a menu where you can enable ‘Continuous deployment trigger’ and select your main branch so that commits to other branches do not inadvertently cause a release.</p></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/continuous_deployment_trigger.PNG" class="lightbox" title="Continuous deployment trigger" data-gallery="quarto-lightbox-gallery-16"><img src="img/continuous_deployment_trigger.PNG" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Continuous deployment trigger</figcaption><p></p>
+</figure>
+</div>
+<ol start="9" type="1">
+<li>Now you just need to make one more change and you will be ready to create a release and deploy your content! Click on ‘Variables’ on the menu at the top. This will bring up a list of three variables, two named APP_ID (you’ll fill those in later) and one called APP_NAME. Enter a value for the variable APP_NAME: use the name of your project, with hyphens instead of spaces.</li>
+</ol>
+<p>Now you can save your pipeline and go to ‘Creating your first release’!</p>
+</section>
+</section>
+<section id="creating-your-first-release" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="creating-your-first-release">Creating your first release</h2>
+<p>If you have followed the steps above correctly, then whenever you push a change to the main branch of your repository it will create a new release for you. The first time however, it is easier to just manually create the release in Azure Devops itself.</p>
+<p>To do this, go to Releases (i.e.&nbsp;see the first screenshot in the ‘Implementing your pipeline’ section) and select your pipeline on the left hand side - you may have to search for it and you should favourite it so that it is more visible in future. If you hover your mouse over the pipeline you will see a star you can click on the right.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/find_pipeline.PNG" class="lightbox" title="Finding your release pipeline" data-gallery="quarto-lightbox-gallery-17"><img src="img/find_pipeline.PNG" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Finding your release pipeline</figcaption><p></p>
+</figure>
+</div>
+<p>Once you have selected your release pipeline, you can click the blue ‘Create release’ button in the top right to manually create a release. You should see a menu like below (it may differ slightly depending on how you set your pipeline up and how many stages it has):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/create_release.PNG" class="lightbox" title="Create release menu" data-gallery="quarto-lightbox-gallery-18"><img src="img/create_release.PNG" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Create release menu</figcaption><p></p>
+</figure>
+</div>
+<p>You do not <em>need</em> to change anything here, but for information:</p>
+<ul>
+<li>The ‘Stages for a trigger change from automated to manual.’ section can be used to make sure that e.g.&nbsp;the release does not automatically deploy to Prod once Pre-prod has completed. This might be useful if you are manually creating a release but want to make sure it does not deploy to Production.</li>
+<li>The ‘Artifacts’ section can be used to select a different commit than the most recent from the main branch. It is unlikely you will ever need to change this.</li>
+<li>The ‘Release description’ section can optionally be used to add a comment to your release. This might be useful when you check back in future to remind yourself if there is a specific reason for you manually creating a release (rather than it automatically being created).</li>
+</ul>
+<p>Click the ‘Create’ button at the bottom.</p>
+<p>You should see a new release appear in the ‘Releases’ section of the page (you may have to refresh the page). The release will be greyed out for all stages but will have started running the tasks of your first stage. You can click on the relase name to monitor the progress of the release but otherwise, wait for a few minutes until the stage(s) are complete. - If your stages all deploy successfully - great! You can continue with this section. - If one or more of your stages are unsuccessful, see the Troubleshooting section for common problems, or post in the DfE R Community Teams site.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that sometimes a deployment stage will be marked as ‘Successful’ when it has in fact failed. This is because the status shown in Azure Devops denotes whether <em>the app was successfully bundled and passed to RSConnect</em> and is unaware of whether <em>RSConnect successfully unpacked the app and can display it</em> - although this will be visible from the deployment log.</p>
+</div>
+</div>
+<p>If your app has successfully deployed to all stages - you’re almost done! There are just a couple of extra steps that need to be completed first.</p>
+<p>To get more information on your release, you should view the log file for the deployment. To do this, click on a release and then hover over a stage of that release. A ‘Logs’ button should appear, click it. You should then be able to see the following page:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/single_release.PNG" class="lightbox" title="Click on a release" data-gallery="quarto-lightbox-gallery-19"><img src="img/single_release.PNG" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Click on a release</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/single_release_stage.PNG" class="lightbox" title="Click on a stage’s logs" data-gallery="quarto-lightbox-gallery-20"><img src="img/single_release_stage.PNG" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Click on a stage’s logs</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/single_release_stage_logs.PNG" class="lightbox" title="The logs for a particular stage" data-gallery="quarto-lightbox-gallery-21"><img src="img/single_release_stage_logs.PNG" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">The logs for a particular stage</figcaption><p></p>
+</figure>
+</div>
+<p>If you then click on the section titled ‘PowerShell Script’, you will see the detailed logs for the main section of the release stage deployment. It will look something like the below:</p>
+<div class="column-page">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/release_powershell_script.PNG" class="lightbox" title="Release stage deployment log" data-gallery="quarto-lightbox-gallery-22"><img src="img/release_powershell_script.PNG" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Release stage deployment log</figcaption><p></p>
+</figure>
+</div>
+</div>
+<section id="reading-a-deployment-log-file" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="reading-a-deployment-log-file">Reading a deployment log file</h3>
+<p>The PowerShell script log is broken up into a few different stages - these correspond to the different stages of the ‘Deploy to RSConnect’ task.</p>
+<ol type="1">
+<li><p>First, the script will print out some information about the Build server (which is where this task is occurring) and then print the value of all available environment variables. For example, if you look for the line that starts ‘RELEASE_ENVIRONMENTNAME’, that will be either Pre-Prod or Prod depending on which stage you are deploying. You can look through these to see what information Azure Devops knows about your deployment.</p></li>
+<li><p>The task then tries to restore the developer’s environment. This is where <code>renv</code> is used to install all the packages necessary for your content to run. Note that this is installing these packages onto the <strong>Build server</strong>, before it then bundles the information up and sends it to the relevant RSConnect server. For this stage of the log file you will be able to see which packages and versions it is trying to install and whether it was successful.</p></li>
+<li><p>The section immediately following the installation of R packages is where the Build server bundles the project and sends it to the RSConnect server. This section starts with the line ‘Preparing to deploy application…DONE’ (row 497 below) and ends with ‘Deploying bundle:…’ (row 503 below). If you see any warnings like those on rows 498-501, they can be ignored. <strong>Important</strong>: you will need to make a note of your app ID. This is visible on the line ‘Uploading bundle for application: xxx …DONE’ (row 502 below). In this case, the APP_ID is 693. Make a note of that for later.</p></li>
+</ol>
+<div class="column-screen-inset">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/intermediate_stage.PNG" class="lightbox" title="Bundling stage of deployment" data-gallery="quarto-lightbox-gallery-23"><img src="img/intermediate_stage.PNG" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Bundling stage of deployment</figcaption><p></p>
+</figure>
+</div>
+</div>
+<ol start="4" type="1">
+<li><p>Any lines that start with ‘[Connect]’ are output of code being run on the RSConnect server. The first lines of this section just print some information about the RSConnect server like R version and server info.</p></li>
+<li><p>Following this, the required R packages are installed on the RSConnect server (so the content can be run). <strong>This is when most issues will occur, so check this section if it looks like something has gone wrong.</strong></p></li>
+<li><p>If the deployment was successful, this section will end with the line ‘Application successfully deployed to…’ and then a URL (row 706 below). Make a note of this URL, as you will need it later.</p></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/application_successfully_deployed.PNG" class="lightbox" title="Application successfully deployed" data-gallery="quarto-lightbox-gallery-24"><img src="img/application_successfully_deployed.PNG" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Application successfully deployed</figcaption><p></p>
+</figure>
+</div>
+<ol start="7" type="1">
+<li>The final section gives some information on the deployment - this is stored for information governance purposes for access by RStudio Connect admins.</li>
+</ol>
+</section>
+<section id="final-steps" class="level3">
+<h3 class="anchored" data-anchor-id="final-steps">Final steps</h3>
+<p>If you remember back in the last step of ‘Implementing your template’, we saw there was an environment variable associated with each stage called APP_ID. This should be filled in for each stage with the integer number you saw in step 3 of reading your deployment log file above (i.e.&nbsp;the ID will be different for each stage).</p>
+<p>The final step before being able to see your content is to raise some service desk requests. You can do that <a href="https://dfe.service-now.com/serviceportal?id=sc_cat_item&amp;sys_id=1e3c3cb9db80ab003b929334ca9619df&amp;referrer=recent_items">here</a></p>
+<p>The first request should be for ‘Change App Access List’. For access you can choose either:</p>
+<ul>
+<li>Entire Organisation: which means everyone in the DfE will be able to view your content</li>
+<li>Specific users/AD Groups: you can give the username/email of individuals (including yourself) to give them access to the content. Alternatively, you can specify an existing AD group to be used to restrict access.</li>
+</ul>
+<p>You should then also request to add yourself as a publisher - same link as above (‘Change to user role’ -&gt; ‘Publisher’). This will mean you are able to view the logs for your content once it has been deployed to RSConnect. In the ‘Justification’ section, put something along the lines of ‘I have deployed (’App X’) and wish to be added as a collaborator so I can view the content logs’.</p>
+<p>You may also wish to change the URL of your content (Change App URL), as the default URL uses the app GUID and so is not user friendly. Here you can change the URL to something more relevant and easy to remember.</p>
+</section>
+</section>
+</section>
+<section id="troubleshootingfaqs" class="level1 page-columns page-full">
+<h1>Troubleshooting/FAQs</h1>
+<p>Below are some common error messages that appear in the deployment log file and how to resolve them - see <a href="#reading-a-deployment-log-file">Reading a deployment log file</a> for information on the structure of a log file. Most of these error messages will occur near the bottom of the log file (sections 5 and 6 of the ‘Reading a deployment log file’).</p>
+<ul>
+<li><em>“Unable to fully restore the R packages associated with this deployment.”</em>
+<ul>
+<li>This is the most common erorr message and is fairly self explanatory. The exact cause of the error can vary and this message is usually preceded by a large amount of output that may be hard to read.</li>
+<li>First, you should identify the package causing the error. In the image below, it is v8.0.0 of the arrow package.</li>
+<li>If you have recently updated this package and need a quick fix, try installing an older version of the package and redeploying. This can be done by e.g.&nbsp;<code>remotes::install_version("arrow", "7.0.0")</code> - remembering to <code>renv::snapshot()</code> before deploying.</li>
+<li>If you haven’t recently updated or need to use this specific version of the package, please post in the DfE R Community Teams site (Help and Errors channel) as it will likely require a change to the RSConnect server configuration.</li>
+</ul></li>
+</ul>
+<div class="column-screen-inset">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/deployment_error_arrow.PNG" class="lightbox" title="Deployment error caused by arrow 8.0.0" data-gallery="quarto-lightbox-gallery-25"><img src="img/deployment_error_arrow.PNG" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Deployment error caused by arrow 8.0.0</figcaption><p></p>
+</figure>
+</div>
+</div>
+<ul>
+<li><em>“Unknown content type”</em>
+<ul>
+<li>This is caused by the project not meeting one of the requirements for identifying the content type. See the <a href="#content-types">‘Content types’ section</a> above.</li>
+</ul></li>
+<li><em>“Application depends on package”x” but it is not installed”</em>
+<ul>
+<li>This usually means you haven’t <code>renv::snapshot()</code>ted before deploying. Make sure you have all the named packages installed before snapshotting and redeploying.</li>
+</ul></li>
+<li><em>“Error in result_insert_dataframe/Invalid character value for cast specification”</em>
+<ul>
+<li>If this error message appears at the bottom of your deployment log file, it most likely means that you have not specified your APP_ID environment variable correctly. Note that this will not affect your deployment as it is a post-deployment task that has failed. All the same, you should make sure your APP_ID environment variables are all integer numbers (see step 3 of <a href="#reading-a-deployment-log-file">‘Reading a deployment log file’</a>)</li>
+</ul></li>
+<li>You have deployed successfully, but when you visit your app it says: <em>“The application failed to start. Contact the author or review the logs for more information.”</em>
+<ul>
+<li>This means the deployment was successful but there was an error when <em>running</em> your app. You should check the logs for your app to see what the issue was.</li>
+<li>To do this, you must be a publisher on RSConnect and collaborator of the app. If you are not already, raise a service desk request (see the <a href="#final-steps">‘Final steps’ section</a> for how to do this).</li>
+<li>Then you can see the logs by going to <em>https://rsconnect/rsc/connect/#/apps/xxx/logs</em> (prod) or <em>https://rsconnect-pp/rsc/connect/#/apps/xxx/logs</em> (pre-prod), where ‘xxx’ is the APP_ID for your app.</li>
+</ul></li>
+</ul>
+</section>
+<section id="glossary" class="level1">
+<h1>Glossary</h1>
+<p><strong>Artifact</strong>: the repository that a release pipeline is looking at.</p>
+<p><strong>Build server</strong>: a computer that is used to deploy content to RSConnect - it is the stepping stone between Azure Devops and the RSConnect servers</p>
+<p><strong>Content</strong>: some R code that displays something and can be deployed to RSConnect - e.g.&nbsp;a Shiny app or an RMarkdown Document.</p>
+<p><strong>Deployment</strong>: See ‘Release’.</p>
+<p><strong>Pipeline</strong>: technically a ‘Release pipeline’. A set of stages which take in a snapshot of a repository and run some code, optionally with other conditions or filters.</p>
+<p><strong>Release</strong>: a snapshot of your repository that is to be passed to various stages within a pipeline.</p>
+<p><strong>RSConnect</strong>: RStudio Connect, a web server for hosting R content. Note that this can mean RSConnect servers (i.e.&nbsp;the machine the content is hosted on) or RSConnect the software (which is installed on the servers and does all the work of hosting the content.)</p>
+<p><strong>Stage</strong>: a step in a pipeline which takes in a snapshot of a repository and runs some code. In 99% of cases that code will be ‘deploy this content to RSConnect’.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","loop":true,"openEffect":"zoom","closeEffect":"zoom"});</script>
+
+
+
+</body></html>

@@ -28,5 +28,7 @@ format:
     df-print: kable
     code-copy: true
 
+editor_options: 
+  chunk_output_type: console
 
 
