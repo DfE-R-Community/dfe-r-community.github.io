@@ -1,0 +1,165 @@
+---
+title: "Introducing The DfE R Community Blog"
+author: "Jacob Scott"
+date: "2022-10-28"
+categories: [news]
+description: 'Why GitHub? Why the DfE R Community? Why blog? Some brief thoughts on all the above.'
+image: "logo-small.png"
+execute: 
+  message: false
+  warning: false
+---
+
+```{r setup}
+#| echo: false
+#| results: 'hide'
+
+# The following (commented) code can be used to create a post-specific lockfile. 
+# This should be run interactively by copy/pasting into the RStudio console.
+#
+#    renv::snapshot("posts/2022-10-28-dfe-r-community", prompt = FALSE)
+#
+# This records the R version you used, and the versions of any packages.
+# Then, if anyone needs to re-render your post (potentially in the distant future), 
+# the following call to `renv::use()` tells R to use those same versions of 
+# packages when executing your code.
+renv::use(lockfile = "renv.lock")
+```
+
+# The DfE R Community
+
+## Current state
+
+The DfE R Community has a lot going for it. We have an active community
+on Teams, semi-regular community meetings (most notably Coffee &
+Coding), and a good number of friendly experts who will generally take
+the time to help others troubleshooting bugs and Shiny app deployments.
+
+If you were to sum up our R Community in a word, I think *maturing*
+would be a good fit. But, as with anything, there is room for
+improvement. As the technologies we've adopted in recent years become
+more embedded, we should step back and ask, *What can we do better?*
+
+## Areas for improvement
+
+While our knowledge of R *basics* is quite strong, we still have plenty
+of room for improvement in other important areas. Among these, the most
+obvious ones are:
+
+-   **Version control**: use of Git and GitHub / AZURE DevOps. Git
+    skills are particularly tough to learn, but are much easier in
+    collaboration with others. Good version control habits are extremely
+    valuable skills - not only do they help you code better, they help
+    you *think* clearly about project development.
+
+-   **Collaboration**: currently we don't do much of this across
+    divisions. This makes sense - different divisions do different
+    things - but the smaller the knowledge-pool is, the easier it is for
+    bad habits to form. Building links between areas will only be a good
+    thing, and will potentially save hours of puzzling if people know
+    where to ask for answers when they run into tough problems.
+
+-   **Best practice**: which packages/functions *shouldn't* you use? How
+    can you speed up your code? How can you make your code easier for
+    other people to understand? These questions fall under 'best
+    practice', and developing ourselves in this area will lead to less
+    bugs, quicker development, and will make handing over projects to
+    other colleagues *much* less painful.
+
+-   **Events**: Previously we've had successful programmes like Coffee &
+    Coding in the past, but more recently there hasn't been much on.
+    Regular DfE R Community catchups will help keep people engaged with
+    the community, working together with other like-minded analysts and
+    developing their skills. It'll also help us keep abreast of the
+    constant stream of new techniques and technologies emerging in the
+    data-science world.
+
+## Q: How can we improve? A: By using GitHub!
+
+Using GitHub for development has several major benefits:
+
+-   GitHub is **open**: teams won't have to make endless access requests
+    in order to work together
+
+-   GitHub is **widely used**: we can easily learn lessons from other
+    organisations, e.g. by looking through issues and pull requests on
+    non-DfE projects - R packages from the Tidyverse are good examples
+
+-   GitHub is **transparent**: projects if we develop useful code we
+    will get feedback from its users when things break - or when we do
+    things in an obviously sub-optimal way. This will help us build
+    habits of properly maintaining and addressing bugs in existing
+    projects and formally deprecating any defunct/superseded code.
+
+-   GitHub is **collaborative**: communicating about code is
+    challenging, but GitHub provides many polished, thoughtful
+    solutions. This will make it easier to *give and ask for feedback*
+    on code, and will help develop our communication skills as analysts
+    in ways which will be naturally transferable - particularly to
+    internal work we do on AZURE DevOps.
+
+The UK Government [Technology Code Of
+Practice](https://www.gov.uk/guidance/the-technology-code-of-practice#be-open-and-use-open-source)
+unequivocally supports open source development, and actively encourages
+government departments to move towards open source as a mode of
+development:
+
+> **3. Be open and use open source**
+>
+> Publish your code and use open source software to improve
+> transparency, flexibility and accountability.
+
+::: callout-note
+As a general rule, projects we develop on GitHub will be *potentially
+useful to members of the public*. Needless to say, projects using
+sensitive data are out of the question.
+:::
+
+## So... The blog?
+
+The DfE R Community Blog will be a place where we (civil servants at
+DfE) can share our thoughts, experiences and lessons learnt as we
+develop code together. These might include technical guides, pieces on
+specific coding techniques (they don't have to just be about R!),
+announcements about community projects, or more reflective pieces like
+this one. Anyone is welcome to submit contributions - a brief guide for
+how to do this can be found on the [blog's
+repo](https://github.com/DfE-R-Community/dfe-r-community.github.io).
+
+## How can I get involved?
+
+The easiest way is to go to the DfE R Community organisation on GitHub,
+find a project you're interested in and create a new issue saying you
+want to help! Alternatively, if you have an idea for a new project,
+message one of the organisation members about it and we'll help you get
+set up 😃
+
+If you'd like to write a blog post, you can read about how to do this at
+the [blog's
+repo](https://github.com/DfE-R-Community/dfe-r-community.github.io).
+
+## Thanks for reading!
+
+That's all for now! Here's some R code to reward you for making it this
+far:
+
+```{r thats-all-folks}
+library(tidyverse)
+library(gganimate)
+
+text <- "That's All Folks!"
+
+# Create a dataset to plot
+plot_data <- tibble(
+	text = map_chr(seq_len(nchar(text)), ~ substr(text, 1, .x)),
+	frame = seq_along(text)
+)
+
+# Create a plot
+p <- ggplot(plot_data, aes(1, 1, label = text)) +
+	geom_text(size = 12, angle = 10) +
+	transition_states(frame)
+
+# Animate and print
+animate(p, fps = 60)
+```

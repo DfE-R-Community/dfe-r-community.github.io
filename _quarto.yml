@@ -1,3 +1,4 @@
+# Make images expandable on click. Install the extension using:
 # quarto.cmd install extension quarto-ext/lightbox
 filters:
   - lightbox
@@ -18,15 +19,17 @@ website:
       - text: Blog
         href: blog.qmd
       - icon: github
-        href: https://github.com/DfE-R-Community
+        href: https://github.com/DfE-R-Community/dfe-r-community.github.io
 
 format:
   html:
-    theme: cosmo
-    css: styles.css
-    toc: true
-    df-print: kable
-    code-copy: true
+    theme: cosmo      # Theme to use
+    css: styles.css   # Extra css settings
+    toc: true         # Use a table of contents for each post
+    df-print: kable   # Print dataframes as kables
+    code-copy: true   # Add a button to copy code
 
+editor_options: 
+  chunk_output_type: console # Show code as if it was outputted to the console
 
-
+freeze: true # Don't re-render posts by default
