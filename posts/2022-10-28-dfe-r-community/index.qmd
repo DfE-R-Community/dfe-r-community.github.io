@@ -123,12 +123,25 @@ develop code together. These might include technical guides, pieces on
 specific coding techniques (they don't have to just be about R!),
 announcements about community projects, or more reflective pieces like
 this one. Anyone is welcome to submit contributions - a brief guide for
-how to do this can be found at on the [blog's
+how to do this can be found on the [blog's
+repo](https://github.com/DfE-R-Community/dfe-r-community.github.io).
+
+## How can I get involved?
+
+The easiest way is to go to the DfE R Community organisation on GitHub,
+find a project you're interested in and create a new issue saying you
+want to help! Alternatively, if you have an idea for a new project,
+message one of the organisation members about it and we'll help you get
+set up 😃
+
+If you'd like to write a blog post, you can read about how to do this at
+the [blog's
 repo](https://github.com/DfE-R-Community/dfe-r-community.github.io).
 
 ## Thanks for reading!
 
-Here's some R code to reward you for making it this far:
+That's all for now! Here's some R code to reward you for making it this
+far:
 
 ```{r thats-all-folks}
 library(tidyverse)

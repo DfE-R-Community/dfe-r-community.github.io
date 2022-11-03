@@ -193,13 +193,20 @@
     "href": "posts/2022-10-28-dfe-r-community/index.html#so-the-blog",
     "title": "Introducing The DfE R Community Blog",
     "section": "So… The blog?",
-    "text": "So… The blog?\nThe DfE R Community Blog will be a place where we (civil servants at DfE) can share our thoughts, experiences and lessons learnt as we develop code together. These might include technical guides, pieces on specific coding techniques (they don’t have to just be about R!), announcements about community projects, or more reflective pieces like this one. Anyone is welcome to submit contributions - a brief guide for how to do this can be found at on the blog’s repo."
+    "text": "So… The blog?\nThe DfE R Community Blog will be a place where we (civil servants at DfE) can share our thoughts, experiences and lessons learnt as we develop code together. These might include technical guides, pieces on specific coding techniques (they don’t have to just be about R!), announcements about community projects, or more reflective pieces like this one. Anyone is welcome to submit contributions - a brief guide for how to do this can be found on the blog’s repo."
   },
   {
     "objectID": "posts/2022-10-28-dfe-r-community/index.html#thanks-for-reading",
     "href": "posts/2022-10-28-dfe-r-community/index.html#thanks-for-reading",
     "title": "Introducing The DfE R Community Blog",
     "section": "Thanks for reading!",
-    "text": "Thanks for reading!\nHere’s some R code to reward you for making it this far:\n\nlibrary(tidyverse)\nlibrary(gganimate)\n\ntext <- \"That's All Folks!\"\n\n# Create a dataset to plot\nplot_data <- tibble(\n    text = map_chr(seq_len(nchar(text)), ~ substr(text, 1, .x)),\n    frame = seq_along(text)\n)\n\n# Create a plot\np <- ggplot(plot_data, aes(1, 1, label = text)) +\n    geom_text(size = 12, angle = 10) +\n    transition_states(frame)\n\n# Animate and print\nanimate(p, fps = 60)"
+    "text": "Thanks for reading!\nThat’s all for now! Here’s some R code to reward you for making it this far:\n\nlibrary(tidyverse)\nlibrary(gganimate)\n\ntext <- \"That's All Folks!\"\n\n# Create a dataset to plot\nplot_data <- tibble(\n    text = map_chr(seq_len(nchar(text)), ~ substr(text, 1, .x)),\n    frame = seq_along(text)\n)\n\n# Create a plot\np <- ggplot(plot_data, aes(1, 1, label = text)) +\n    geom_text(size = 12, angle = 10) +\n    transition_states(frame)\n\n# Animate and print\nanimate(p, fps = 60)"
+  },
+  {
+    "objectID": "posts/2022-10-28-dfe-r-community/index.html#how-can-i-get-involved",
+    "href": "posts/2022-10-28-dfe-r-community/index.html#how-can-i-get-involved",
+    "title": "Introducing The DfE R Community Blog",
+    "section": "How can I get involved?",
+    "text": "How can I get involved?\nThe easiest way is to go to the DfE R Community organisation on GitHub, find a project you’re interested in and create a new issue saying you want to help! Alternatively, if you have an idea for a new project, message one of the organisation members about it and we’ll help you get set up 😃\nIf you’d like to write a blog post, you can read about how to do this at the blog’s repo."
   }
 ]
