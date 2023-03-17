@@ -1,7 +1,7 @@
 ---
 title: "dfe-r-community.github.io"
 listing:
-  contents: "posts/!(rsconnect-guide)/*.qmd"
+  contents: posts
   sort: "date desc"
   type: default
   categories: true

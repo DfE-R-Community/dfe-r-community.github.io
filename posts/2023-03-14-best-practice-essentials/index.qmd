@@ -1,0 +1,60 @@
+---
+title: "Best Practice Essentials for R"
+author: "Jacob Scott"
+date: "2023-03-14"
+categories: [guide, reference, best-practice]
+description: 'DfE guidelines for writing robust, maintainable code'
+image: "ppt/cheatsheet.jpg"
+execute: 
+  message: false
+  warning: false
+---
+
+```{r setup}
+#| echo: false
+#| results: 'hide'
+
+# The following (commented) code can be used to create a post-specific lockfile. 
+# This should be run interactively by copy/pasting into the RStudio console.
+#
+#    renv::snapshot("posts/2023-03-14-best-practice-essentials", prompt = FALSE)
+#
+# This records the R version you used, and the versions of any packages.
+# Then, if anyone needs to re-render your post (potentially in the distant future), 
+# the following call to `renv::use()` tells R to use those same versions of 
+# packages when executing your code.
+renv::use(lockfile = "renv.lock")
+```
+
+# Best Practice: What and Why
+
+In R there are many ways do get the job done. None of these are bad -
+*the right code is the code that works*. That said, knowing what is best
+practice and striving to keep it has big benefits:
+
+-   Your code will be easier to write (less decisions for you to make)
+
+-   Your code will be easier to read and maintain (other people will be
+    familiar with the conventions you use)
+
+-   You will improve as an analyst and developer
+
+# DfE Standards for R
+
+Wherever possible, as an organisation we seek to defer to industry
+standards rather than creating our own. Broadly, we therefore recommend:
+
+-   [R for Data Science (2e)](https://r4ds.hadley.nz/) for best-practice
+    essentials
+
+-   [The Tidyverse style guide](https://style.tidyverse.org/) for a more
+    rigorous overview of code styling
+
+# A Best Practice Cheatsheet
+
+For a quick primer on best-practice you can refer to the following
+cheatsheet:
+
+[![](ppt/cheatsheet.jpg)](ppt/cheatsheet.pdf){target="_blank"}
+
+[View at full resolution](ppt/cheatsheet.pdf){target="_blank"}

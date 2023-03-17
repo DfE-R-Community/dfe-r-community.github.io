@@ -2,26 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://dfe-r-community.github.io/blog.html</loc>
-    <lastmod>2022-11-03T10:40:26.806Z</lastmod>
+    <lastmod>2023-03-17T09:27:45.797Z</lastmod>
   </url>
   <url>
     <loc>https://dfe-r-community.github.io/index.html</loc>
-    <lastmod>2022-11-03T10:30:26.280Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dfe-r-community.github.io/posts/first-post/index.html</loc>
-    <lastmod>2022-08-30T14:01:23.216Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dfe-r-community.github.io/posts/rsconnect-guide/index.html</loc>
-    <lastmod>2022-08-30T14:03:02.263Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dfe-r-community.github.io/posts/2022-10-28-dfe-r-community/index.html</loc>
-    <lastmod>2022-11-03T10:38:02.795Z</lastmod>
+    <lastmod>2023-03-17T09:12:37.730Z</lastmod>
   </url>
   <url>
     <loc>https://dfe-r-community.github.io/posts/2022-10-27-rsconnect-guide/index.html</loc>
-    <lastmod>2022-11-03T10:29:15.073Z</lastmod>
+    <lastmod>2023-03-16T18:45:51.125Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dfe-r-community.github.io/posts/2022-10-28-dfe-r-community/index.html</loc>
+    <lastmod>2023-03-15T09:24:40.890Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dfe-r-community.github.io/posts/2023-03-14-best-practice-essentials/index.html</loc>
+    <lastmod>2023-03-17T09:31:51.541Z</lastmod>
   </url>
 </urlset>
