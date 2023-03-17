@@ -1,7 +1,8 @@
 {
   "listingMap": {
     "blog.qmd": [
-      "posts/!(rsconnect-guide)/*.qmd"
+      "B3049D40",
+      "posts"
     ]
   }
 }

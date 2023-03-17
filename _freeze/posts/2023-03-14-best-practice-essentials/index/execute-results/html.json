@@ -1,0 +1,14 @@
+{
+  "hash": "ef7638091676f486cc0d36653b8dc8d1",
+  "result": {
+    "markdown": "---\ntitle: \"Best Practice Essentials for R\"\nauthor: \"Jacob Scott\"\ndate: \"2023-03-14\"\ncategories: [guide, reference, best-practice]\ndescription: 'DfE guidelines for writing robust, maintainable code'\nimage: \"ppt/cheatsheet.jpg\"\nexecute: \n  message: false\n  warning: false\n---\n\n::: {.cell}\n\n:::\n\n\n# Best Practice: What and Why\n\nIn R there are many ways do get the job done. None of these are bad -\n*the right code is the code that works*. That said, knowing what is best\npractice and striving to keep it has big benefits:\n\n-   Your code will be easier to write (less decisions for you to make)\n\n-   Your code will be easier to read and maintain (other people will be\n    familiar with the conventions you use)\n\n-   You will improve as an analyst and developer\n\n# DfE Standards for R\n\nWherever possible, as an organisation we seek to defer to industry\nstandards rather than creating our own. Broadly, we therefore recommend:\n\n-   [R for Data Science (2e)](https://r4ds.hadley.nz/) for best-practice\n    essentials\n\n-   [The Tidyverse style guide](https://style.tidyverse.org/) for a more\n    rigorous overview of code styling\n\n# A Best Practice Cheatsheet\n\nFor a quick primer on best-practice you can refer to the following\ncheatsheet:\n\n[![](ppt/cheatsheet.jpg)](ppt/cheatsheet.pdf){target=\"_blank\"}\n\n[View at full resolution](ppt/cheatsheet.pdf){target=\"_blank\"}",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

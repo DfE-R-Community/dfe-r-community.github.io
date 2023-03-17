@@ -2,6 +2,7 @@
 title: "Deploying to RSConnect"
 author: "Chris Brownlie"
 date: "2022-10-17"
+categories: [guide, reference]
 description: 'A guide for how to deploy R content within the DfE'
 image: "rocket-launch.jpg"
 execute: 
