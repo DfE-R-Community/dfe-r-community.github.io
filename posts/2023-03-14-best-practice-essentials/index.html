@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Jacob Scott">
+<meta name="dcterms.date" content="2023-03-14">
+<meta name="description" content="DfE guidelines for writing robust, maintainable code">
 
-<title>DfE R Community - The DfE R Community Blog</title>
+<title>DfE R Community - Best Practice Essentials for R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,21 +26,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./resources/favicon.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../resources/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -59,17 +63,17 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">DfE R Community</span>
     </a>
   </div>
@@ -79,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./blog.html">
+    <a class="nav-link" href="../../blog.html">
  <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item compact">
@@ -94,43 +98,98 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Best Practice Essentials for R</h1>
+                  <div>
+        <div class="description">
+          DfE guidelines for writing robust, maintainable code
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">guide</div>
+                <div class="quarto-category">reference</div>
+                <div class="quarto-category">best-practice</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Jacob Scott </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">March 14, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#best-practice-what-and-why" id="toc-best-practice-what-and-why" class="nav-link active" data-scroll-target="#best-practice-what-and-why">Best Practice: What and Why</a></li>
+  <li><a href="#dfe-standards-for-r" id="toc-dfe-standards-for-r" class="nav-link" data-scroll-target="#dfe-standards-for-r">DfE Standards for R</a></li>
+  <li><a href="#a-best-practice-cheatsheet" id="toc-a-best-practice-cheatsheet" class="nav-link" data-scroll-target="#a-best-practice-cheatsheet">A Best Practice Cheatsheet</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<div class="quarto-about-jolla">
-  <img src="resources/logo-small.png" class="about-image
-  round " style="height: 15em; width: 15em;">
- <header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">The DfE R Community Blog</h1>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<div class="cell">
+
 </div>
-<div class="quarto-title-meta">
-  </div>
-</header><main class="content" id="quarto-document-content">
-<div style="text-align: left">
-<p>Welcome to the DfE R Community Blog! This is a resource updated by data scientists in the (UK Government) Department for Education with posts that we think others may also find useful/interesting. These may include:</p>
+<section id="best-practice-what-and-why" class="level1">
+<h1>Best Practice: What and Why</h1>
+<p>In R there are many ways do get the job done. None of these are bad - <em>the right code is the code that works</em>. That said, knowing what is best practice and striving to keep it has big benefits:</p>
 <ul>
-<li><p>Announcements related to projects available at the <a href="https://github.com/DfE-R-Community">DfE R Community GitHub</a></p></li>
-<li><p>Techniques/technologies/topical tips we want to draw attention to</p></li>
-<li><p>Any other thoughts about how to make data science effective for organisations!</p></li>
+<li><p>Your code will be easier to write (less decisions for you to make)</p></li>
+<li><p>Your code will be easier to read and maintain (other people will be familiar with the conventions you use)</p></li>
+<li><p>You will improve as an analyst and developer</p></li>
 </ul>
-<p>If you’d like to contribute, it’s as easy as submitting a pull request at the <a href="https://github.com/DfE-R-Community/dfe-r-community.github.io">project repo</a> on GitHub.</p>
-<p>Happy Coding! 😃💻📈</p>
+</section>
+<section id="dfe-standards-for-r" class="level1">
+<h1>DfE Standards for R</h1>
+<p>Wherever possible, as an organisation we seek to defer to industry standards rather than creating our own. Broadly, we therefore recommend:</p>
+<ul>
+<li><p><a href="https://r4ds.hadley.nz/">R for Data Science (2e)</a> for best-practice essentials</p></li>
+<li><p><a href="https://style.tidyverse.org/">The Tidyverse style guide</a> for a more rigorous overview of code styling</p></li>
+</ul>
+</section>
+<section id="a-best-practice-cheatsheet" class="level1">
+<h1>A Best Practice Cheatsheet</h1>
+<p>For a quick primer on best-practice you can refer to the following cheatsheet:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="ppt/cheatsheet.pdf" target="_blank"><img src="ppt/cheatsheet.jpg" class="img-fluid figure-img"></a></p>
+</figure>
 </div>
+<p><a href="ppt/cheatsheet.pdf" target="_blank">View at full resolution</a></p>
 
 
-</main> 
-  <hr class="about-sep">
-   <div class="about-links">
-  <a href="https://dfe-r-community.github.io/" class="about-link">
-    <i class="bi bi-github"></i>
-     <span class="about-link-text">Github</span>
-  </a>
-</div>
-</div>
- <!-- /main -->
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -151,6 +210,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
   const clipboard = new window.ClipboardJS('.code-copy-button', {
     target: function(trigger) {
       return trigger.previousElementSibling;

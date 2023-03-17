@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-1.2.335">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -87,12 +87,13 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html">Blog</a>
+    <a class="nav-link" href="../../blog.html">
+ <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/DfE-R-Community/dfe-r-community.github.io"><i class="bi bi-github" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -110,7 +111,11 @@ ul.task-list li input[type="checkbox"] {
           A guide for how to deploy R content within the DfE
         </div>
       </div>
-                </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">guide</div>
+                <div class="quarto-category">reference</div>
+              </div>
+                  </div>
   </div>
     
   
@@ -129,6 +134,7 @@ ul.task-list li input[type="checkbox"] {
         <p class="date">October 17, 2022</p>
       </div>
     </div>
+    
       
     </div>
     
@@ -343,7 +349,7 @@ Note
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="img/two_stage_pipeline.PNG" class="lightbox" title="Two stage pipeline" data-gallery="quarto-lightbox-gallery-1"><img src="img/two_stage_pipeline.PNG" class="img-fluid figure-img"></a></p>
+<p><a href="img/two_stage_pipeline.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Two stage pipeline"><img src="img/two_stage_pipeline.PNG" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Two stage pipeline</figcaption><p></p>
 </figure>
 </div>
@@ -367,7 +373,7 @@ Note
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="img/three_stage_pipeline.PNG" class="lightbox" title="Three stage pipeline" data-gallery="quarto-lightbox-gallery-2"><img src="img/three_stage_pipeline.PNG" class="img-fluid figure-img"></a></p>
+<p><a href="img/three_stage_pipeline.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Three stage pipeline"><img src="img/three_stage_pipeline.PNG" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Three stage pipeline</figcaption><p></p>
 </figure>
 </div>
@@ -408,19 +414,19 @@ Note
 <p>Once you have the json file template downloaded from above, you can create a new Release pipeline for your content. In an Azure Devops Project, go to Pipelines -&gt; Releases (on the navigation menu on the left).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="img/release_pipelines.PNG" class="lightbox" title="Release pipelines" data-gallery="quarto-lightbox-gallery-3"><img src="img/release_pipelines.PNG" class="img-fluid figure-img"></a></p>
+<p><a href="img/release_pipelines.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Release pipelines"><img src="img/release_pipelines.PNG" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Release pipelines</figcaption><p></p>
 </figure>
 </div>
 <p>Click on ‘New’ and ‘Import Release Pipeline’</p>
-<p><a href="img/import_release_pipeline.PNG" class="lightbox" title="Import release pipelines" data-gallery="quarto-lightbox-gallery-4"><img src="img/import_release_pipeline.PNG" class="img-fluid" alt="Import release pipelines"></a> This should bring up a dialog box where you can select the json template you downloaded above. Click OK and this should take you to your pipeline editing page.</p>
+<p><a href="img/import_release_pipeline.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Import release pipelines"><img src="img/import_release_pipeline.PNG" class="img-fluid" alt="Import release pipelines"></a> This should bring up a dialog box where you can select the json template you downloaded above. Click OK and this should take you to your pipeline editing page.</p>
 <p>There are a few more steps you must take before you can create your first release and these will differ depending on which of the two templates you are using.</p>
 <section id="two-stage-pipeline" class="level3">
 <h3 class="anchored" data-anchor-id="two-stage-pipeline">Two-stage pipeline</h3>
 <p>If you are using a 2-stage pipeline, your pipeline page should look like the image below:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="img/imported_two_stage_pipeline_annotated.PNG" class="lightbox" title="Imported 2-stage pipelines" data-gallery="quarto-lightbox-gallery-5"><img src="img/imported_two_stage_pipeline_annotated.PNG" class="img-fluid figure-img"></a></p>
+<p><a href="img/imported_two_stage_pipeline_annotated.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Imported 2-stage pipelines"><img src="img/imported_two_stage_pipeline_annotated.PNG" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Imported 2-stage pipelines</figcaption><p></p>
 </figure>
 </div>
@@ -430,7 +436,7 @@ Note
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="img/add_artifact.PNG" class="lightbox" title="Add artifact" data-gallery="quarto-lightbox-gallery-6"><img src="img/add_artifact.PNG" class="img-fluid figure-img"></a></p>
+<p><a href="img/add_artifact.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Add artifact"><img src="img/add_artifact.PNG" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Add artifact</figcaption><p></p>
 </figure>
 </div>
@@ -445,7 +451,7 @@ Note
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="img/pipeline_preprod_task.PNG" class="lightbox" title="Preprod task" data-gallery="quarto-lightbox-gallery-7"><img src="img/pipeline_preprod_task.PNG" class="img-fluid figure-img"></a></p>
+<p><a href="img/pipeline_preprod_task.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Preprod task"><img src="img/pipeline_preprod_task.PNG" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Preprod task</figcaption><p></p>
 </figure>
 </div>
@@ -456,7 +462,7 @@ Note
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="img/pre_deployment_conditions.PNG" class="lightbox" title="Pre-deployment conditions" data-gallery="quarto-lightbox-gallery-8"><img src="img/pre_deployment_conditions.PNG" class="img-fluid figure-img"></a></p>
+<p><a href="img/pre_deployment_conditions.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Pre-deployment conditions"><img src="img/pre_deployment_conditions.PNG" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Pre-deployment conditions</figcaption><p></p>
 </figure>
 </div>
@@ -467,7 +473,7 @@ Note
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="img/continuous_deployment_trigger.PNG" class="lightbox" title="Continuous deployment trigger" data-gallery="quarto-lightbox-gallery-9"><img src="img/continuous_deployment_trigger.PNG" class="img-fluid figure-img"></a></p>
+<p><a href="img/continuous_deployment_trigger.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Continuous deployment trigger"><img src="img/continuous_deployment_trigger.PNG" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Continuous deployment trigger</figcaption><p></p>
 </figure>
 </div>
@@ -481,7 +487,7 @@ Note
 <p>If you are using a 3-stage pipeline, your pipeline page should look like the image below:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="img/imported_three_stage_pipeline_annotated.PNG" class="lightbox" title="Imported 3-stage pipelines" data-gallery="quarto-lightbox-gallery-10"><img src="img/imported_three_stage_pipeline_annotated.PNG" class="img-fluid figure-img"></a></p>
+<p><a href="img/imported_three_stage_pipeline_annotated.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Imported 3-stage pipelines"><img src="img/imported_three_stage_pipeline_annotated.PNG" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Imported 3-stage pipelines</figcaption><p></p>
 </figure>
 </div>
@@ -491,7 +497,7 @@ Note
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="img/add_artifact.PNG" class="lightbox" title="Add artifact" data-gallery="quarto-lightbox-gallery-11"><img src="img/add_artifact.PNG" class="img-fluid figure-img"></a></p>
+<p><a href="img/add_artifact.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Add artifact"><img src="img/add_artifact.PNG" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Add artifact</figcaption><p></p>
 </figure>
 </div>
@@ -506,14 +512,14 @@ Note
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="img/dev_pre_deployment.PNG" class="lightbox" title="Dev pre-deployment conditions" data-gallery="quarto-lightbox-gallery-12"><img src="img/dev_pre_deployment.PNG" class="img-fluid figure-img"></a></p>
+<p><a href="img/dev_pre_deployment.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Dev pre-deployment conditions"><img src="img/dev_pre_deployment.PNG" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Dev pre-deployment conditions</figcaption><p></p>
 </figure>
 </div>
 <p>Here you should enable Artifact filters, then click ‘Add’ and select your artifact. In the new filter, select Type as ‘Exclude’ and Branch as your main branch (e.g.&nbsp;main or master). This will ensure that deployment will only happen to Dev when a change is made to a non-main branch.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="img/dev_pre_deployment_filtered.PNG" class="lightbox" title="Dev pre-deployment filter" data-gallery="quarto-lightbox-gallery-13"><img src="img/dev_pre_deployment_filtered.PNG" class="img-fluid figure-img"></a></p>
+<p><a href="img/dev_pre_deployment_filtered.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Dev pre-deployment filter"><img src="img/dev_pre_deployment_filtered.PNG" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Dev pre-deployment filter</figcaption><p></p>
 </figure>
 </div>
@@ -522,7 +528,7 @@ Note
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="img/pipeline_preprod_task.PNG" class="lightbox" title="Preprod task" data-gallery="quarto-lightbox-gallery-14"><img src="img/pipeline_preprod_task.PNG" class="img-fluid figure-img"></a></p>
+<p><a href="img/pipeline_preprod_task.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="Preprod task"><img src="img/pipeline_preprod_task.PNG" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Preprod task</figcaption><p></p>
 </figure>
 </div>
@@ -534,7 +540,7 @@ Note
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="img/pre_deployment_conditions.PNG" class="lightbox" title="Pre-deployment conditions" data-gallery="quarto-lightbox-gallery-15"><img src="img/pre_deployment_conditions.PNG" class="img-fluid figure-img"></a></p>
+<p><a href="img/pre_deployment_conditions.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Pre-deployment conditions"><img src="img/pre_deployment_conditions.PNG" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Pre-deployment conditions</figcaption><p></p>
 </figure>
 </div>
@@ -545,7 +551,7 @@ Note
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="img/continuous_deployment_trigger.PNG" class="lightbox" title="Continuous deployment trigger" data-gallery="quarto-lightbox-gallery-16"><img src="img/continuous_deployment_trigger.PNG" class="img-fluid figure-img"></a></p>
+<p><a href="img/continuous_deployment_trigger.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-16" title="Continuous deployment trigger"><img src="img/continuous_deployment_trigger.PNG" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Continuous deployment trigger</figcaption><p></p>
 </figure>
 </div>
@@ -561,14 +567,14 @@ Note
 <p>To do this, go to Releases (i.e.&nbsp;see the first screenshot in the ‘Implementing your pipeline’ section) and select your pipeline on the left hand side - you may have to search for it and you should favourite it so that it is more visible in future. If you hover your mouse over the pipeline you will see a star you can click on the right.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="img/find_pipeline.PNG" class="lightbox" title="Finding your release pipeline" data-gallery="quarto-lightbox-gallery-17"><img src="img/find_pipeline.PNG" class="img-fluid figure-img"></a></p>
+<p><a href="img/find_pipeline.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-17" title="Finding your release pipeline"><img src="img/find_pipeline.PNG" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Finding your release pipeline</figcaption><p></p>
 </figure>
 </div>
 <p>Once you have selected your release pipeline, you can click the blue ‘Create release’ button in the top right to manually create a release. You should see a menu like below (it may differ slightly depending on how you set your pipeline up and how many stages it has):</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="img/create_release.PNG" class="lightbox" title="Create release menu" data-gallery="quarto-lightbox-gallery-18"><img src="img/create_release.PNG" class="img-fluid figure-img"></a></p>
+<p><a href="img/create_release.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-18" title="Create release menu"><img src="img/create_release.PNG" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Create release menu</figcaption><p></p>
 </figure>
 </div>
@@ -597,19 +603,19 @@ Note
 <p>To get more information on your release, you should view the log file for the deployment. To do this, click on a release and then hover over a stage of that release. A ‘Logs’ button should appear, click it. You should then be able to see the following page:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="img/single_release.PNG" class="lightbox" title="Click on a release" data-gallery="quarto-lightbox-gallery-19"><img src="img/single_release.PNG" class="img-fluid figure-img"></a></p>
+<p><a href="img/single_release.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-19" title="Click on a release"><img src="img/single_release.PNG" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Click on a release</figcaption><p></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="img/single_release_stage.PNG" class="lightbox" title="Click on a stage’s logs" data-gallery="quarto-lightbox-gallery-20"><img src="img/single_release_stage.PNG" class="img-fluid figure-img"></a></p>
+<p><a href="img/single_release_stage.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-20" title="Click on a stage’s logs"><img src="img/single_release_stage.PNG" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Click on a stage’s logs</figcaption><p></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="img/single_release_stage_logs.PNG" class="lightbox" title="The logs for a particular stage" data-gallery="quarto-lightbox-gallery-21"><img src="img/single_release_stage_logs.PNG" class="img-fluid figure-img"></a></p>
+<p><a href="img/single_release_stage_logs.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-21" title="The logs for a particular stage"><img src="img/single_release_stage_logs.PNG" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">The logs for a particular stage</figcaption><p></p>
 </figure>
 </div>
@@ -617,7 +623,7 @@ Note
 <div class="column-page">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="img/release_powershell_script.PNG" class="lightbox" title="Release stage deployment log" data-gallery="quarto-lightbox-gallery-22"><img src="img/release_powershell_script.PNG" class="img-fluid figure-img"></a></p>
+<p><a href="img/release_powershell_script.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-22" title="Release stage deployment log"><img src="img/release_powershell_script.PNG" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Release stage deployment log</figcaption><p></p>
 </figure>
 </div>
@@ -633,7 +639,7 @@ Note
 <div class="column-screen-inset">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="img/intermediate_stage.PNG" class="lightbox" title="Bundling stage of deployment" data-gallery="quarto-lightbox-gallery-23"><img src="img/intermediate_stage.PNG" class="img-fluid figure-img"></a></p>
+<p><a href="img/intermediate_stage.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-23" title="Bundling stage of deployment"><img src="img/intermediate_stage.PNG" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Bundling stage of deployment</figcaption><p></p>
 </figure>
 </div>
@@ -645,7 +651,7 @@ Note
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="img/application_successfully_deployed.PNG" class="lightbox" title="Application successfully deployed" data-gallery="quarto-lightbox-gallery-24"><img src="img/application_successfully_deployed.PNG" class="img-fluid figure-img"></a></p>
+<p><a href="img/application_successfully_deployed.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-24" title="Application successfully deployed"><img src="img/application_successfully_deployed.PNG" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Application successfully deployed</figcaption><p></p>
 </figure>
 </div>
@@ -682,7 +688,7 @@ Note
 <div class="column-screen-inset">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="img/deployment_error_arrow.PNG" class="lightbox" title="Deployment error caused by arrow 8.0.0" data-gallery="quarto-lightbox-gallery-25"><img src="img/deployment_error_arrow.PNG" class="img-fluid figure-img"></a></p>
+<p><a href="img/deployment_error_arrow.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-25" title="Deployment error caused by arrow 8.0.0"><img src="img/deployment_error_arrow.PNG" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Deployment error caused by arrow 8.0.0</figcaption><p></p>
 </figure>
 </div>
@@ -764,7 +770,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -800,29 +823,47 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":true,"descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom"});</script>
+<script>var lightboxQuarto = GLightbox({"loop":true,"descPosition":"bottom","openEffect":"zoom","selector":".lightbox","closeEffect":"zoom"});</script>
 
 
 
